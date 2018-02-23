@@ -1,0 +1,47 @@
+PODS:
+  - Alamofire (4.6.0)
+  - DZNEmptyDataSet (1.8.1)
+  - FDFullscreenPopGesture (1.1)
+  - HandyJSON (4.0.0-beta.1)
+  - IQKeyboardManagerSwift (5.0.7)
+  - Kingfisher (4.6.2)
+  - MJRefresh (3.1.15.3)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
+  - SnapKit (4.0.0)
+  - SVProgressHUD (2.2.5)
+  - SwiftyJSON (4.0.0)
+  - XLPhotoBrowser+CoderXL (1.2.0):
+    - SDWebImage (~> 4.0.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - DZNEmptyDataSet
+  - FDFullscreenPopGesture
+  - HandyJSON (~> 4.0.0-beta.1)
+  - IQKeyboardManagerSwift
+  - Kingfisher
+  - MJRefresh
+  - SnapKit
+  - SVProgressHUD
+  - SwiftyJSON
+  - XLPhotoBrowser+CoderXL
+
+SPEC CHECKSUMS:
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  HandyJSON: 428bb18e2c34c2a77361accebf90cf64e4f74118
+  IQKeyboardManagerSwift: 30fb3a61de1af53a95e02b80fb54ed0a19d5ede5
+  Kingfisher: 55b9c395bf8d3949676ad3861111923990ab68cf
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  XLPhotoBrowser+CoderXL: 2bf4036e2af4611b24bde1681e24c64ed01fbe98
+
+PODFILE CHECKSUM: b8e49700eb01748517dc5d3d8a927bb9428ab7ae
+
+COCOAPODS: 1.4.0

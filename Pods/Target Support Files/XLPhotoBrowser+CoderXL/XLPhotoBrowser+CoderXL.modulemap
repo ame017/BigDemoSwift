@@ -1,0 +1,6 @@
+framework module XLPhotoBrowser_CoderXL {
+  umbrella header "XLPhotoBrowser+CoderXL-umbrella.h"
+
+  export *
+  module * { export * }
+}

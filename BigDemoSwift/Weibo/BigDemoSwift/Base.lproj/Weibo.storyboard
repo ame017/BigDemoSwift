@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f9A-Ja-vGs">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--微博-->
+        <scene sceneID="wFy-GT-yY1">
+            <objects>
+                <navigationController id="f9A-Ja-vGs" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="微博" image="tab_weibo" landscapeImage="tab_weibo" selectedImage="tab_weibo" id="UlO-Ew-wP6"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="trc-yc-fUo">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="oYw-6G-jRA" kind="relationship" relationship="rootViewController" id="55A-uP-ITw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vyo-hC-7qM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="962" y="-753"/>
+        </scene>
+        <!--微博-->
+        <scene sceneID="qTr-cZ-3Pz">
+            <objects>
+                <viewController id="oYw-6G-jRA" customClass="WBMainViewController" customModule="BigDemoSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kcp-pW-APq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="JHA-8K-pZg">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="XHy-Yd-KKd">
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XHy-Yd-KKd" id="i3K-W2-YdA" customClass="WBMainTableViewCell" customModule="BigDemoSwift" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="oYw-6G-jRA" id="pSY-nn-8Ye"/>
+                                    <outlet property="delegate" destination="Kcp-pW-APq" id="DFm-5i-LlT"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JHA-8K-pZg" firstAttribute="leading" secondItem="xlN-NQ-XV1" secondAttribute="leading" id="EeI-XV-5FL"/>
+                            <constraint firstItem="xlN-NQ-XV1" firstAttribute="bottom" secondItem="JHA-8K-pZg" secondAttribute="bottom" id="Pbg-Ys-Pxe"/>
+                            <constraint firstItem="JHA-8K-pZg" firstAttribute="top" secondItem="xlN-NQ-XV1" secondAttribute="top" id="YBa-4U-DHH"/>
+                            <constraint firstItem="xlN-NQ-XV1" firstAttribute="trailing" secondItem="JHA-8K-pZg" secondAttribute="trailing" id="znU-op-agb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xlN-NQ-XV1"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="微博" id="O2P-hS-gdr">
+                        <barButtonItem key="leftBarButtonItem" image="navigationbar_icon_camera" id="VpN-is-YbJ">
+                            <color key="tintColor" red="0.062745098040000002" green="0.062745098040000002" blue="0.062745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="navigationbar_pop" id="qya-sc-0C9">
+                            <color key="tintColor" red="0.062745098040000002" green="0.062745098040000002" blue="0.062745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="MainTable" destination="JHA-8K-pZg" id="ilP-MV-dNr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ybG-Vx-2Lz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1793" y="-757"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="navigationbar_icon_camera" width="30" height="30"/>
+        <image name="navigationbar_pop" width="30" height="30"/>
+        <image name="tab_weibo" width="30" height="30"/>
+    </resources>
+</document>
