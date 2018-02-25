@@ -10,5 +10,6 @@ import UIKit
 
 class WBMainHeaderModel: NSObject {
     var image:UIImage?
+    var name:String?
     var urlIndex:Int?
 }
