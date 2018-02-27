@@ -30,6 +30,9 @@ class WBMainContentModel: NSObject {
     var content:String?
     var imageArray:Array<UIImage>?
     var forwarding:WBMainContentModel?
+    var forwardingNum:Int?
+    var remarkNum:Int?
+    var likeNum:Int?
     
     func getVipImage() -> UIImage {
         var image:UIImage?

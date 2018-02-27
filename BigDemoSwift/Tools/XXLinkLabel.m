@@ -373,17 +373,17 @@
 }
 //长按事件
 -(void) timerBegin{
-    NSLog(@"长按开始");
+//    NSLog(@"长按开始");
     _count = 0;
     _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target: self selector: @selector(handleTimer) userInfo: nil repeats: YES];
     [_timer fire];
 }
 
 -(void) timerEnd{
-    NSLog(@"长按结束");
+//    NSLog(@"长按结束");
     [_timer invalidate];
     _timer = nil;
-    NSLog(@"count = %f",_count);
+//    NSLog(@"count = %f",_count);
 }
 
 -(void) handleTimer{

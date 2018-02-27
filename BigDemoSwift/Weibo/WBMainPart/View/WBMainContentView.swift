@@ -19,7 +19,7 @@ class WBMainContentView: UIView,XXLinkLabelDelegate {
     @IBOutlet weak var contentLabel: XXLinkLabel!
     @IBOutlet weak var vipLevelImage: UIImageView!
     
-    var subViewArray:Array<UIView>?
+    var subViewArray = Array<UIView>()
     
     var model:WBMainContentModel?{
         didSet{
@@ -62,11 +62,12 @@ class WBMainContentView: UIView,XXLinkLabelDelegate {
             }
             //内容
             self.contentLabel.text = model?.content
+            self.content.layoutIfNeeded()
             //内容下面的各种蛋疼的东西
-            for view in self.subViewArray! {
+            for view in self.subViewArray {
                 view.removeFromSuperview()
             }
-            self.subViewArray?.removeAll()
+            self.subViewArray.removeAll()
             //图片型
             if model?.type == WBMainContentType.Image {
                 //单张
@@ -74,12 +75,12 @@ class WBMainContentView: UIView,XXLinkLabelDelegate {
                     let image = model?.imageArray![0]
                     let imageView = UIImageView.init(image: image)
                     self.content.addSubview(imageView)
-                    self.subViewArray?.append(imageView)
+                    self.subViewArray.append(imageView)
                     imageView.snp.makeConstraints({ (make) in
                         make.top.equalTo(contentLabel.snp.bottom).offset(20)
                         make.left.equalTo(contentLabel)
-                        make.width.equalTo(150)
-                        make.height.equalTo((150.0/(image?.size.width)!)*(image?.size.height)!)
+                        make.width.equalTo(250)
+                        make.height.equalTo((250.0/(image?.size.width)!)*(image?.size.height)!)
                         make.bottom.equalTo(-10)
                     })
                 }else{
@@ -91,7 +92,7 @@ class WBMainContentView: UIView,XXLinkLabelDelegate {
                         imageView.contentMode = UIViewContentMode.scaleAspectFill
                         imageView.clipsToBounds = true
                         self.content.addSubview(imageView)
-                        self.subViewArray?.append(imageView)
+                        self.subViewArray.append(imageView)
                         imageView.snp.makeConstraints({ (make) in
                             //第一个
                             if i == 0{
@@ -106,17 +107,22 @@ class WBMainContentView: UIView,XXLinkLabelDelegate {
                                 make.top.equalTo(lastImageView!)
                                 make.left.equalTo((lastImageView?.snp.right)!).offset(5)
                             }
-                            make.width.height.equalTo((SCREEN_WIDTH-10*2-5*2)/4.0)
+                            make.width.height.equalTo((SCREEN_WIDTH-10*2-5*2)/3.0)
+                            //设置底边
                             if i == (model?.imageArray?.count)!-1{
-                                make.bottom.equalTo(10)
+                                make.bottom.equalTo(-10)
                             }
                         })
+                        //如果是最后一个设置关联
                         if i % 3 == 2{
                             lastLineImageView = imageView
                         }
                         lastImageView = imageView
                     }
                 }
+            }else if model?.type == WBMainContentType.Forwarding{
+                //转发
+                
             }
         }
     }
@@ -127,13 +133,14 @@ class WBMainContentView: UIView,XXLinkLabelDelegate {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initFromXIB()
+        self.contentLabel.linkTextColor = AMEColor(r: 37, g: 139, b: 255)
+        self.contentLabel.regularType = [.aboat,.topic,.url]
+        self.contentLabel.delegate = self
+        self.contentLabel.numberOfLines = 0
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
         initFromXIB()
-        self.contentLabel.linkTextColor = AMEColor(r: 37, g: 139, b: 255)
-        self.contentLabel.regularType = [.aboat,.topic,.url]
-        self.contentLabel.delegate = self
     }
     
     func initFromXIB() {
@@ -146,23 +153,23 @@ class WBMainContentView: UIView,XXLinkLabelDelegate {
     }
     
     func labelImageClickLinkInfo(_ linkInfo: XXLinkLabelModel!) {
-        
+        print("labelImageClickLinkInfo")
     }
     
     func labelLinkClickLinkInfo(_ linkInfo: XXLinkLabelModel!, linkUrl: String!) {
-        
+        print("labelLinkClickLinkInfo")
     }
     
     func labelLinkLongPressLinkInfo(_ linkInfo: XXLinkLabelModel!, linkUrl: String!) {
-        
+        print("labelLinkLongPressLinkInfo")
     }
     
     func labelRegularLinkClickWithclickedString(_ clickedString: String!) {
-        
+        print("labelRegularLinkClickWithclickedString".appending(clickedString))
     }
     
     func labelClicked(withExtend extend: Any!) {
-        
+        print("labelClicked")
     }
 
 }

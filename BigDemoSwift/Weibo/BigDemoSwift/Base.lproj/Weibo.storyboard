@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -39,13 +40,75 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="XHy-Yd-KKd">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="234" id="XHy-Yd-KKd" customClass="WBMainTableViewCell" customModule="BigDemoSwift" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="234"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XHy-Yd-KKd" id="i3K-W2-YdA" customClass="WBMainTableViewCell" customModule="BigDemoSwift" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XHy-Yd-KKd" id="i3K-W2-YdA">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="233.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="sb1-70-HiX" customClass="WBMainContentView" customModule="BigDemoSwift" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
+                                                </view>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t6r-Sj-lsG">
+                                                    <rect key="frame" x="0.0" y="193" width="125" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="T9c-Tu-xQS"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" title="转发" image="artical_detail_icon_repost">
+                                                        <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7YT-PW-pab">
+                                                    <rect key="frame" x="125" y="193" width="125" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" title="评论" image="artical_detail_icon_comment">
+                                                        <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="waD-qT-GVf">
+                                                    <rect key="frame" x="250" y="193" width="125" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" title="点赞" image="artical_detail_icon_like">
+                                                        <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                </button>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QOu-cq-dmW">
+                                                    <rect key="frame" x="20" y="192" width="335" height="1"/>
+                                                    <color key="backgroundColor" white="0.803466796875" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="0.5" id="dJD-IB-46V"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="waD-qT-GVf" firstAttribute="centerY" secondItem="7YT-PW-pab" secondAttribute="centerY" id="BAQ-hf-pGH"/>
+                                                <constraint firstAttribute="trailing" secondItem="sb1-70-HiX" secondAttribute="trailing" id="CF8-0G-hXx"/>
+                                                <constraint firstItem="QOu-cq-dmW" firstAttribute="leading" secondItem="i3K-W2-YdA" secondAttribute="leading" constant="20" id="DX7-IW-pIC"/>
+                                                <constraint firstItem="waD-qT-GVf" firstAttribute="leading" secondItem="7YT-PW-pab" secondAttribute="trailing" id="EXD-ve-1cf"/>
+                                                <constraint firstAttribute="trailing" secondItem="waD-qT-GVf" secondAttribute="trailing" id="Iz3-XC-eeL"/>
+                                                <constraint firstItem="t6r-Sj-lsG" firstAttribute="leading" secondItem="i3K-W2-YdA" secondAttribute="leading" id="Lw6-it-3Ap"/>
+                                                <constraint firstItem="7YT-PW-pab" firstAttribute="leading" secondItem="t6r-Sj-lsG" secondAttribute="trailing" id="O7P-d8-Y3A"/>
+                                                <constraint firstItem="sb1-70-HiX" firstAttribute="top" secondItem="i3K-W2-YdA" secondAttribute="top" id="PQT-L5-hPD"/>
+                                                <constraint firstItem="t6r-Sj-lsG" firstAttribute="top" secondItem="QOu-cq-dmW" secondAttribute="bottom" id="TNK-Qz-XNg"/>
+                                                <constraint firstAttribute="trailing" secondItem="QOu-cq-dmW" secondAttribute="trailing" constant="20" id="Wwf-e0-wNP"/>
+                                                <constraint firstItem="7YT-PW-pab" firstAttribute="centerY" secondItem="t6r-Sj-lsG" secondAttribute="centerY" id="cDP-o2-t1Z"/>
+                                                <constraint firstItem="sb1-70-HiX" firstAttribute="leading" secondItem="i3K-W2-YdA" secondAttribute="leading" id="csH-3e-dVz"/>
+                                                <constraint firstItem="waD-qT-GVf" firstAttribute="height" secondItem="t6r-Sj-lsG" secondAttribute="height" id="gdY-yj-H2x"/>
+                                                <constraint firstItem="QOu-cq-dmW" firstAttribute="top" secondItem="sb1-70-HiX" secondAttribute="bottom" id="gmT-Ja-JV1"/>
+                                                <constraint firstItem="waD-qT-GVf" firstAttribute="width" secondItem="t6r-Sj-lsG" secondAttribute="width" id="ioo-4L-DUV"/>
+                                                <constraint firstItem="7YT-PW-pab" firstAttribute="width" secondItem="t6r-Sj-lsG" secondAttribute="width" id="jjG-aG-gsQ"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="t6r-Sj-lsG" secondAttribute="bottom" id="rWC-Vp-C0u"/>
+                                                <constraint firstItem="7YT-PW-pab" firstAttribute="height" secondItem="t6r-Sj-lsG" secondAttribute="height" id="v54-6D-sNR"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="forwardingButton" destination="t6r-Sj-lsG" id="fdg-QG-fWN"/>
+                                            <outlet property="likeButton" destination="waD-qT-GVf" id="rfW-Ql-6E3"/>
+                                            <outlet property="mainContentView" destination="sb1-70-HiX" id="5OQ-Ju-DNR"/>
+                                            <outlet property="remarkButton" destination="7YT-PW-pab" id="Uaj-L6-zFD"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -77,10 +140,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ybG-Vx-2Lz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1793" y="-757"/>
+            <point key="canvasLocation" x="1792.8" y="-757.87106446776613"/>
         </scene>
     </scenes>
     <resources>
+        <image name="artical_detail_icon_comment" width="22" height="22"/>
+        <image name="artical_detail_icon_like" width="22" height="22"/>
+        <image name="artical_detail_icon_repost" width="22" height="22"/>
         <image name="navigationbar_icon_camera" width="30" height="30"/>
         <image name="navigationbar_pop" width="30" height="30"/>
         <image name="tab_weibo" width="30" height="30"/>
