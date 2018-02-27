@@ -28,7 +28,7 @@ class WBMainContentModel: NSObject {
     var time:String?
     var from:String?
     var content:String?
-    var imageArray:Array<UIImage>?
+    var imageArray = Array<UIImage>()
     var forwarding:WBMainContentModel?
     var forwardingNum:Int?
     var remarkNum:Int?
@@ -41,7 +41,7 @@ class WBMainContentModel: NSObject {
         case -1:
             image = #imageLiteral(resourceName: "common_icon_membership_expired")
         case 0:
-            image = nil
+            image = UIImage.init()
         default:
             if vipLevel <= 7 {
                 image = UIImage.init(named: "common_icon_membership_level".appending(String(vipLevel)))

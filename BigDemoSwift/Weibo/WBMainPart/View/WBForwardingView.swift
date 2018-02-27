@@ -1,76 +1,23 @@
 //
-//  WBMainContentView.swift
+//  WBForwardingView.swift
 //  BigDemoSwift
 //
-//  Created by ame on 2018/2/25.
+//  Created by ame on 2018/2/27.
 //  Copyright © 2018年 ame017. All rights reserved.
 //
 
 import UIKit
 
-class WBMainContentView: UIView {
-
-    @IBOutlet weak var headIcon: UIImageView!
-    @IBOutlet weak var cornerIcon: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var downButton: UIButton!
-    @IBOutlet weak var fromButton: UIButton!
-    @IBOutlet weak var timeLabel: UILabel!
+class WBForwardingView: UIView {
+    @IBOutlet var content: UIView!
+    
     @IBOutlet weak var contentLabel: XXLinkLabel!
-    @IBOutlet weak var vipLevelImage: UIImageView!
-    
-    var subViewArray = Array<UIView>()
-    
     var model:WBMainContentModel?{
         didSet{
-            //头像
-            self.headIcon.image = model?.headIcon
-            //用户类型(黄V 蓝V 普通)
-            let userType = model?.userType ?? WBContentUserType.Normal
-            switch userType {
-            case .Blue:
-                self.cornerIcon.image = #imageLiteral(resourceName: "avatar_enterprise_vip")
-            case .Yellow:
-                self.cornerIcon.image = #imageLiteral(resourceName: "avatar_vip")
-            case .Normal:
-                self.cornerIcon.isHidden = true
-            }
-            //用户名
-            self.nameLabel.text = model?.name
-            //vip
-            let vipLevel = model?.vipLevel ?? 0
-            if vipLevel > 0{
-                self.nameLabel.textColor = UIColor.red
-            }else{
-                self.nameLabel.textColor = UIColor.black
-            }
-            let image = model?.getVipImage()
-            if image != nil {
-                self.vipLevelImage.image = image
-            }else{
-                self.vipLevelImage.isHidden = true
-            }
-            //时间
-            self.timeLabel.text = model?.getTimeString()
-            //来源
-            if (model?.from?.isEmpty)! {
-                self.fromButton.setTitle("微博weibo.com", for: UIControlState.normal)
-                self.fromButton.setTitleColor(UIColor.lightGray, for: UIControlState.normal)
-            }else{
-                self.fromButton.setTitle(model?.from, for: UIControlState.normal)
-                self.fromButton.setTitleColor(AMEColor(r: 37, g: 139, b: 255), for: UIControlState.normal)
-            }
-            //内容
-            self.contentLabel.text = model?.content
+            let content = "@".appending((model?.name)!).appending(":") .appending((model?.content)!)
+            self.contentLabel.text = content
             self.content.layoutIfNeeded()
-            //内容下面的各种蛋疼的东西
-            for view in self.subViewArray {
-                view.removeFromSuperview()
-            }
-            self.subViewArray.removeAll()
-            //图片型
-            if model?.type == WBMainContentType.Image {
-                //单张
+            if (model?.imageArray.count)! > 0 {
                 if model?.imageArray.count == 1{
                     let image = model?.imageArray[0]
                     let imageView = UIImageView.init(image: image)
@@ -81,7 +28,6 @@ class WBMainContentView: UIView {
                     imageView.tag = 0
                     
                     self.content.addSubview(imageView)
-                    self.subViewArray.append(imageView)
                     imageView.snp.makeConstraints({ (make) in
                         make.top.equalTo(contentLabel.snp.bottom).offset(5)
                         make.left.equalTo(contentLabel)
@@ -104,16 +50,15 @@ class WBMainContentView: UIView {
                         imageView.tag = i
                         
                         self.content.addSubview(imageView)
-                        self.subViewArray.append(imageView)
                         imageView.snp.makeConstraints({ (make) in
                             //第一个
                             if i == 0{
                                 make.top.equalTo(self.contentLabel.snp.bottom).offset(5)
-                                make.left.equalTo(self.headIcon)
+                                make.left.equalTo(10)
                             }else if i % 3 == 0{
                                 //第一列
                                 make.top.equalTo((lastLineImageView?.snp.bottom)!).offset(5)
-                                make.left.equalTo(self.headIcon)
+                                make.left.equalTo(10)
                             }else{
                                 //其他
                                 make.top.equalTo(lastImageView!)
@@ -132,50 +77,44 @@ class WBMainContentView: UIView {
                         lastImageView = imageView
                     }
                 }
-            }else if model?.type == WBMainContentType.Forwarding{
-                //转发
-                let fw = WBForwardingView.init(frame: CGRect.init())
-                fw.model = self.model?.forwarding
-                self.content.addSubview(fw)
-                self.subViewArray.append(fw)
-                fw.snp.makeConstraints({ (make) in
-                    make.top.equalTo(self.contentLabel.snp.bottom).offset(5)
-                    make.left.equalTo(0)
-                    make.right.equalTo(0)
-                    make.bottom.equalTo(0)
-                })
-                fw.contentLabel.delegate = self.contentLabel.delegate
             }
         }
     }
-    
-    
-    @IBOutlet var content: UIView!
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initFromXIB()
         self.contentLabel.linkTextColor = AMEColor(r: 37, g: 139, b: 255)
         self.contentLabel.regularType = [.aboat,.topic,.url]
+        self.contentLabel.delegate = self
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
         initFromXIB()
         self.contentLabel.linkTextColor = AMEColor(r: 37, g: 139, b: 255)
         self.contentLabel.regularType = [.aboat,.topic,.url]
+        self.contentLabel.delegate = self
     }
     
     func initFromXIB() {
         let bundle = Bundle(for: type(of: self))
         //nibName是你定义的xib文件名
-        let nib = UINib(nibName: "WBMainContentView", bundle: bundle)
+        let nib = UINib(nibName: "WBForwardingView", bundle: bundle)
         content = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         content.frame = bounds
         self.addSubview(content)
     }
+    
     @objc func imageViewDidTap(tapGestureRecognizer:UITapGestureRecognizer) -> Void {
         let browser = XLPhotoBrowser.show(withImages: self.model?.imageArray, currentImageIndex: (tapGestureRecognizer.view?.tag)!)
         browser?.browserStyle = XLPhotoBrowserStyle.indexLabel
         browser?.sourceImageView = tapGestureRecognizer.view as! UIImageView
     }
+    /*
+    // Only override draw() if you perform custom drawing.
+    // An empty implementation adversely affects performance during animation.
+    override func draw(_ rect: CGRect) {
+        // Drawing code
+    }
+    */
+
 }

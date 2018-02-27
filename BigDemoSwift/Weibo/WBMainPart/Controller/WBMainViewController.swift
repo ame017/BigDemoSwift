@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WBMainViewController: WBBaseViewController, WBMainHeaderViewDelegate ,UITableViewDelegate, UITableViewDataSource{
+class WBMainViewController: WBBaseViewController, WBMainHeaderViewDelegate ,UITableViewDelegate, UITableViewDataSource, WBMainTableViewCellDelegate{
 
     
 
@@ -17,6 +17,9 @@ class WBMainViewController: WBBaseViewController, WBMainHeaderViewDelegate ,UITa
     var testModel = WBMainContentModel()
     var testModelOneImage = WBMainContentModel()
     var testModelMoreImage = WBMainContentModel()
+    var forwardingModel = WBMainContentModel()
+    
+    
     
     //MARK: - lifeCircle
     override func viewDidLoad() {
@@ -83,6 +86,20 @@ class WBMainViewController: WBBaseViewController, WBMainHeaderViewDelegate ,UITa
         self.testModelMoreImage.remarkNum = 0
         self.testModelMoreImage.likeNum = 5
         self.testModelMoreImage.imageArray = [UIImage.init(named: "headIcon".appending(String(arc4random()%42).appending(".jpg")))!,UIImage.init(named: "headIcon".appending(String(arc4random()%42).appending(".jpg")))!,UIImage.init(named: "headIcon".appending(String(arc4random()%42).appending(".jpg")))!,UIImage.init(named: "headIcon".appending(String(arc4random()%42).appending(".jpg")))!,UIImage.init(named: "headIcon".appending(String(arc4random()%42).appending(".jpg")))!,UIImage.init(named: "headIcon".appending(String(arc4random()%42).appending(".jpg")))!,UIImage.init(named: "headIcon".appending(String(arc4random()%42).appending(".jpg")))!,UIImage.init(named: "headIcon".appending(String(arc4random()%42).appending(".jpg")))!,UIImage.init(named: "headIcon".appending(String(arc4random()%42).appending(".jpg")))!]
+        
+        self.forwardingModel.contentId = 3
+        self.forwardingModel.type = WBMainContentType.Forwarding
+        self.forwardingModel.headIcon = UIImage.init(named: "headIcon".appending(String(arc4random()%42).appending(".jpg")))
+        self.forwardingModel.userType = WBContentUserType.Normal
+        self.forwardingModel.name = "小白兔"
+        self.forwardingModel.vipLevel = 0
+        self.forwardingModel.time = "2018-2-27 9:00:00"
+        self.forwardingModel.from = "iPhone SE(4G)"
+        self.forwardingModel.content = "转需@长颈鹿"
+        self.forwardingModel.forwardingNum = 0
+        self.forwardingModel.remarkNum = 0
+        self.forwardingModel.likeNum = 0
+        self.forwardingModel.forwarding = self.testModelMoreImage
     }
     
     //MARK: - tableViewDelegate
@@ -92,14 +109,17 @@ class WBMainViewController: WBBaseViewController, WBMainHeaderViewDelegate ,UITa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? WBMainTableViewCell
-        let row = indexPath.row % 3
+        let row = indexPath.row % 4
         if row == 1 {
             cell?.model = self.testModel
         }else if row == 2{
             cell?.model = self.testModelOneImage
-        }else{
+        }else if row == 3{
             cell?.model = self.testModelMoreImage
+        }else{
+            cell?.model = self.forwardingModel
         }
+        cell?.delegate = self
         return cell!
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -117,7 +137,16 @@ class WBMainViewController: WBBaseViewController, WBMainHeaderViewDelegate ,UITa
     
     //MARK - headView.delegate
     func wb_mainHeaderView(_ HeaderView: WBMainHeaderView, imageViewDidClickWithIndex index: Int) {
-        let alert = UIAlertController.init(title: "提示", message: "我被点击了".appending(String(index)), preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController.init(title: "提示", message: "我被点击了:".appending(String(index)), preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+            
+        }))
+        self.present(alert, animated: true) {
+            
+        }
+    }
+    func wb_mainTableViewCell(_ cell: WBMainTableViewCell, linkDidClick linkString: String) {
+        let alert = UIAlertController.init(title: "提示", message: "我被点击了:".appending(linkString), preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
             
         }))

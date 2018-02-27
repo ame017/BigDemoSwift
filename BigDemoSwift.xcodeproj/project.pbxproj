@@ -20,6 +20,8 @@
 		1803933F20400B8900A12674 /* WBMainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1803933E20400B8900A12674 /* WBMainHeaderView.swift */; };
 		1803934420400CA100A12674 /* WBMainHeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1803934320400CA100A12674 /* WBMainHeaderModel.swift */; };
 		181EC4992044010900993615 /* miku.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 181EC4982044010900993615 /* miku.jpg */; };
+		186D11F42044E342009F3242 /* WBForwardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D11F32044E342009F3242 /* WBForwardingView.swift */; };
+		186D11F62044E34E009F3242 /* WBForwardingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186D11F52044E34E009F3242 /* WBForwardingView.xib */; };
 		188C68492042396900ED544E /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C68482042396900ED544E /* Header.swift */; };
 		188C68D42042849C00ED544E /* headIcon0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 188C68AA2042849700ED544E /* headIcon0.jpg */; };
 		188C68D52042849C00ED544E /* headIcon9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 188C68AB2042849700ED544E /* headIcon9.jpg */; };
@@ -88,6 +90,8 @@
 		1803933E20400B8900A12674 /* WBMainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBMainHeaderView.swift; sourceTree = "<group>"; };
 		1803934320400CA100A12674 /* WBMainHeaderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBMainHeaderModel.swift; sourceTree = "<group>"; };
 		181EC4982044010900993615 /* miku.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = miku.jpg; sourceTree = "<group>"; };
+		186D11F32044E342009F3242 /* WBForwardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBForwardingView.swift; sourceTree = "<group>"; };
+		186D11F52044E34E009F3242 /* WBForwardingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WBForwardingView.xib; sourceTree = "<group>"; };
 		188C68482042396900ED544E /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		188C68AA2042849700ED544E /* headIcon0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = headIcon0.jpg; sourceTree = "<group>"; };
 		188C68AB2042849700ED544E /* headIcon9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = headIcon9.jpg; sourceTree = "<group>"; };
@@ -246,6 +250,8 @@
 				1803933E20400B8900A12674 /* WBMainHeaderView.swift */,
 				188C68FE2042850700ED544E /* WBMainContentView.swift */,
 				188C6900204286A300ED544E /* WBMainContentView.xib */,
+				186D11F32044E342009F3242 /* WBForwardingView.swift */,
+				186D11F52044E34E009F3242 /* WBForwardingView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -435,6 +441,7 @@
 				188C68F12042849C00ED544E /* headIcon30.jpg in Resources */,
 				188C68F82042849C00ED544E /* headIcon21.jpg in Resources */,
 				188C68F52042849C00ED544E /* headIcon13.jpg in Resources */,
+				186D11F62044E34E009F3242 /* WBForwardingView.xib in Resources */,
 				188C68E82042849C00ED544E /* headIcon14.jpg in Resources */,
 				188C68D72042849C00ED544E /* headIcon12.jpg in Resources */,
 				188C68ED2042849C00ED544E /* headIcon35.jpg in Resources */,
@@ -539,6 +546,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				186D11F42044E342009F3242 /* WBForwardingView.swift in Sources */,
 				188C68FF2042850700ED544E /* WBMainContentView.swift in Sources */,
 				18039338204006B200A12674 /* WBBaseViewController.swift in Sources */,
 				188C68492042396900ED544E /* Header.swift in Sources */,
@@ -706,6 +714,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
 			name = Debug;
 		};
@@ -724,6 +733,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "BigDemoSwift/Header/BigDemoSwift-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
 			name = Release;
 		};
