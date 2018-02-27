@@ -10,6 +10,8 @@ import UIKit
 
 class WBMainContentView: UIView {
 
+    var fatherView:UIView?
+    
     @IBOutlet weak var headIcon: UIImageView!
     @IBOutlet weak var cornerIcon: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -145,6 +147,10 @@ class WBMainContentView: UIView {
                     make.bottom.equalTo(0)
                 })
                 fw.contentLabel.delegate = self.contentLabel.delegate
+                if (self.fatherView?.isKind(of: WBMainTableViewCell.classForCoder()))!{
+                    let fatherV = self.fatherView as! WBMainTableViewCell
+                    fw.content.addTarget(fatherV, action: #selector(fatherV.forwardingViewDidClick(forwardingView:)), for: UIControlEvents.touchUpInside)
+                }
             }
         }
     }

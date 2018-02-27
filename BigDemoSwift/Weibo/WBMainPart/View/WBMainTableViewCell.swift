@@ -10,6 +10,12 @@ import UIKit
 
 @objc protocol WBMainTableViewCellDelegate : NSObjectProtocol {
     @objc optional func wb_mainTableViewCell(_ cell:WBMainTableViewCell,linkDidClick linkString:String)
+    @objc optional func wb_mainTableViewCellHeadIconDidClick(_ cell:WBMainTableViewCell)
+    @objc optional func wb_mainTableViewCell(_ cell:WBMainTableViewCell, fromButtonDidClick from:String)
+    @objc optional func wb_mainTableViewCellForwardingButtonDidClick(_ cell:WBMainTableViewCell)
+    @objc optional func wb_mainTableViewCellRemarkButtonDidClick(_ cell:WBMainTableViewCell)
+    @objc optional func wb_mainTableViewCellLikeButtonDidClick(_ cell:WBMainTableViewCell)
+    @objc optional func wb_mainTableViewCellForwardingViewDidClick(_ cell:WBMainTableViewCell)
 }
 
 
@@ -39,7 +45,11 @@ class WBMainTableViewCell: UITableViewCell,XXLinkLabelDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        mainContentView.fatherView = self
         mainContentView.contentLabel.delegate = self
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(HeadIconDidTap(tapGestureRecognizer:)))
+        mainContentView.headIcon.addGestureRecognizer(tap)
+        mainContentView.fromButton.addTarget(self, action: #selector(fromButtonDidClick(button:)), for: UIControlEvents.touchUpInside)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -68,5 +78,14 @@ class WBMainTableViewCell: UITableViewCell,XXLinkLabelDelegate {
     func labelClicked(withExtend extend: Any!) {
         print("labelClicked")
     }
-
+    //MARK - Click
+    @objc func HeadIconDidTap(tapGestureRecognizer:UITapGestureRecognizer) -> Void {
+        self.delegate?.wb_mainTableViewCellHeadIconDidClick?(self)
+    }
+    @objc func fromButtonDidClick(button:UIButton) -> Void {
+        self.delegate?.wb_mainTableViewCell?(self, fromButtonDidClick: button.title(for: UIControlState.normal)!)
+    }
+    @objc func forwardingViewDidClick(forwardingView:WBForwardingView) -> Void {
+        self.delegate?.wb_mainTableViewCellForwardingViewDidClick?(self)
+    }
 }

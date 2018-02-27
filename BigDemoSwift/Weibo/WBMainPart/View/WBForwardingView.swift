@@ -8,8 +8,8 @@
 
 import UIKit
 
-class WBForwardingView: UIView {
-    @IBOutlet var content: UIView!
+class WBForwardingView: UIControl {
+    @IBOutlet var content: UIControl!
     
     @IBOutlet weak var contentLabel: XXLinkLabel!
     var model:WBMainContentModel?{
@@ -99,7 +99,7 @@ class WBForwardingView: UIView {
         let bundle = Bundle(for: type(of: self))
         //nibName是你定义的xib文件名
         let nib = UINib(nibName: "WBForwardingView", bundle: bundle)
-        content = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
+        content = nib.instantiate(withOwner: self, options: nil)[0] as! UIControl
         content.frame = bounds
         self.addSubview(content)
     }
