@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oe-eC-ZUM" customClass="XXLinkLabel">
-                    <rect key="frame" x="10" y="10" width="355" height="18"/>
+                    <rect key="frame" x="10" y="10" width="37.5" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -30,13 +30,10 @@
             </subviews>
             <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="7oe-eC-ZUM" secondAttribute="trailing" constant="10" id="9F3-Qu-SbU"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7oe-eC-ZUM" secondAttribute="trailing" constant="10" id="9F3-Qu-SbU"/>
                 <constraint firstItem="7oe-eC-ZUM" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="LUr-6V-6zq"/>
                 <constraint firstItem="7oe-eC-ZUM" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="Mgg-aj-D8E"/>
-                <constraint firstItem="7oe-eC-ZUM" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="Ptj-r9-zc9"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="7oe-eC-ZUM" secondAttribute="trailing" constant="10" id="iST-cO-Z7e"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7oe-eC-ZUM" secondAttribute="bottom" constant="20" id="ms9-zy-qa2"/>
-                <constraint firstItem="7oe-eC-ZUM" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="rHn-5J-CXY"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

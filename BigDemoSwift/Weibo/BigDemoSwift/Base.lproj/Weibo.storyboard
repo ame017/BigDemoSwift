@@ -58,6 +58,9 @@
                                                     <state key="normal" title="转发" image="artical_detail_icon_repost">
                                                         <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="forwardingButtonDidClick:" destination="XHy-Yd-KKd" eventType="touchUpInside" id="wez-7T-yFy"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7YT-PW-pab">
                                                     <rect key="frame" x="125" y="203.5" width="125" height="30"/>
@@ -65,6 +68,9 @@
                                                     <state key="normal" title="评论" image="artical_detail_icon_comment">
                                                         <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="remarkButtonDidClick:" destination="XHy-Yd-KKd" eventType="touchUpInside" id="QIe-t3-Q3x"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="waD-qT-GVf">
                                                     <rect key="frame" x="250" y="203.5" width="125" height="30"/>
@@ -72,6 +78,9 @@
                                                     <state key="normal" title="点赞" image="artical_detail_icon_like">
                                                         <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="likeButtonClick:" destination="XHy-Yd-KKd" eventType="touchUpInside" id="aJG-Ke-TsW"/>
+                                                    </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QOu-cq-dmW">
                                                     <rect key="frame" x="20" y="202.5" width="335" height="1"/>

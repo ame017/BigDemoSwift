@@ -120,6 +120,7 @@ class WBMainViewController: WBBaseViewController, WBMainHeaderViewDelegate ,UITa
             cell?.model = self.forwardingModel
         }
         cell?.delegate = self
+        cell?.tableView = tableView
         return cell!
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -131,11 +132,18 @@ class WBMainViewController: WBBaseViewController, WBMainHeaderViewDelegate ,UITa
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 100
     }
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 200
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let alert = UIAlertController.init(title: "提示", message: "cell被点击了:".appending(String(indexPath.row)), preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+            
+        }))
+        self.present(alert, animated: true) {
+            
+        }
+    }
     
-    //MARK - headView.delegate
+    //MARK - WBMainHeaderViewDelegate
     func wb_mainHeaderView(_ HeaderView: WBMainHeaderView, imageViewDidClickWithIndex index: Int) {
         let alert = UIAlertController.init(title: "提示", message: "我被点击了:".appending(String(index)), preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
@@ -145,8 +153,63 @@ class WBMainViewController: WBBaseViewController, WBMainHeaderViewDelegate ,UITa
             
         }
     }
+    //MARK - WBMainTableViewCellDelegate
     func wb_mainTableViewCell(_ cell: WBMainTableViewCell, linkDidClick linkString: String) {
         let alert = UIAlertController.init(title: "提示", message: "我被点击了:".appending(linkString), preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+            
+        }))
+        self.present(alert, animated: true) {
+            
+        }
+    }
+    func wb_mainTableViewCellHeadIconDidClick(_ cell: WBMainTableViewCell) {
+        let alert = UIAlertController.init(title: "提示", message: "头像被点击了:".appending((cell.model?.name)!), preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+            
+        }))
+        self.present(alert, animated: true) {
+            
+        }
+    }
+    func wb_mainTableViewCellLikeButtonDidClick(_ cell: WBMainTableViewCell) {
+        let alert = UIAlertController.init(title: "提示", message: "点赞被点击了:".appending((cell.model?.name)!), preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+            
+        }))
+        self.present(alert, animated: true) {
+            
+        }
+    }
+    func wb_mainTableViewCellRemarkButtonDidClick(_ cell: WBMainTableViewCell) {
+        let alert = UIAlertController.init(title: "提示", message: "评论被点击了:".appending((cell.model?.name)!), preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+            
+        }))
+        self.present(alert, animated: true) {
+            
+        }
+    }
+    func wb_mainTableViewCellForwardingButtonDidClick(_ cell: WBMainTableViewCell) {
+        let alert = UIAlertController.init(title: "提示", message: "转发被点击了:".appending((cell.model?.name)!), preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+            
+        }))
+        self.present(alert, animated: true) {
+            
+        }
+    }
+    func wb_mainTableViewCellForwardingViewDidClick(_ cell: WBMainTableViewCell) {
+        let alert = UIAlertController.init(title: "提示", message: "转发框被点击了:".appending((cell.model?.name)!), preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+            
+        }))
+        self.present(alert, animated: true) {
+            
+        }
+    }
+    func wb_mainTableViewCell(_ cell: WBMainTableViewCell, fromButtonDidClick from: String) {
+        let alert = UIAlertController.init(title: "提示", message: "来源被点击了:".appending((cell.model?.name)!), preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
             
         }))

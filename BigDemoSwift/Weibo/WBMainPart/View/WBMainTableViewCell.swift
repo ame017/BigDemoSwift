@@ -21,10 +21,11 @@ import UIKit
 
 class WBMainTableViewCell: UITableViewCell,XXLinkLabelDelegate {
 
-    @IBOutlet weak var mainContentView: WBMainContentView!
-    @IBOutlet weak var forwardingButton: UIButton!
-    @IBOutlet weak var remarkButton: UIButton!
-    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet private weak var mainContentView: WBMainContentView!
+    @IBOutlet private weak var forwardingButton: UIButton!
+    @IBOutlet private weak var remarkButton: UIButton!
+    @IBOutlet private weak var likeButton: UIButton!
+    var tableView:UITableView?
     
     var delegate:WBMainTableViewCellDelegate?
     
@@ -47,6 +48,7 @@ class WBMainTableViewCell: UITableViewCell,XXLinkLabelDelegate {
         // Initialization code
         mainContentView.fatherView = self
         mainContentView.contentLabel.delegate = self
+        mainContentView.contentLabel.extend = self
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(HeadIconDidTap(tapGestureRecognizer:)))
         mainContentView.headIcon.addGestureRecognizer(tap)
         mainContentView.fromButton.addTarget(self, action: #selector(fromButtonDidClick(button:)), for: UIControlEvents.touchUpInside)
@@ -57,7 +59,7 @@ class WBMainTableViewCell: UITableViewCell,XXLinkLabelDelegate {
 
         // Configure the view for the selected state
     }
-    
+    //MARK - XXLinkLabelDelegate
     func labelImageClickLinkInfo(_ linkInfo: XXLinkLabelModel!) {
         print("labelImageClickLinkInfo")
     }
@@ -77,6 +79,15 @@ class WBMainTableViewCell: UITableViewCell,XXLinkLabelDelegate {
     
     func labelClicked(withExtend extend: Any!) {
         print("labelClicked")
+        let exView = extend as! UIView
+        //本
+        if exView.isKind(of: self.classForCoder) {
+            let indexPath = self.tableView!.indexPath(for: self)
+            self.tableView?.delegate?.tableView!(self.tableView!, didSelectRowAt: indexPath!)
+        }else{
+            //转发
+            self.forwardingViewDidClick(forwardingView: exView as! WBForwardingView)
+        }
     }
     //MARK - Click
     @objc func HeadIconDidTap(tapGestureRecognizer:UITapGestureRecognizer) -> Void {
@@ -88,4 +99,14 @@ class WBMainTableViewCell: UITableViewCell,XXLinkLabelDelegate {
     @objc func forwardingViewDidClick(forwardingView:WBForwardingView) -> Void {
         self.delegate?.wb_mainTableViewCellForwardingViewDidClick?(self)
     }
+    @IBAction func forwardingButtonDidClick(_ sender: UIButton) {
+        self.delegate?.wb_mainTableViewCellForwardingButtonDidClick?(self)
+    }
+    @IBAction func remarkButtonDidClick(_ sender: UIButton) {
+        self.delegate?.wb_mainTableViewCellRemarkButtonDidClick?(self)
+    }
+    @IBAction func likeButtonClick(_ sender: UIButton) {
+        self.delegate?.wb_mainTableViewCellLikeButtonDidClick?(self)
+    }
+    
 }

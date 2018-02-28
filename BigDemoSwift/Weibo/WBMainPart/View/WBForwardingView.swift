@@ -86,6 +86,7 @@ class WBForwardingView: UIControl {
         self.contentLabel.linkTextColor = AMEColor(r: 37, g: 139, b: 255)
         self.contentLabel.regularType = [.aboat,.topic,.url]
         self.contentLabel.delegate = self
+        self.contentLabel.extend = self
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -93,6 +94,7 @@ class WBForwardingView: UIControl {
         self.contentLabel.linkTextColor = AMEColor(r: 37, g: 139, b: 255)
         self.contentLabel.regularType = [.aboat,.topic,.url]
         self.contentLabel.delegate = self
+        self.contentLabel.extend = self
     }
     
     func initFromXIB() {
