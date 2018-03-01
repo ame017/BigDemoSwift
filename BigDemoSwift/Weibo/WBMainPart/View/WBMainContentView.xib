@@ -28,7 +28,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="171"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UGe-tG-0cW">
+                <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UGe-tG-0cW">
                     <rect key="frame" x="10" y="10" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="RNn-Kc-oZi"/>
@@ -87,7 +87,7 @@
                     </constraints>
                     <state key="normal" image="story_icon_back_down" backgroundImage="story_icon_back_down"/>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHb-DP-WzT" customClass="XXLinkLabel">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHb-DP-WzT" customClass="XXLinkLabel">
                     <rect key="frame" x="10" y="60" width="37.5" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -101,13 +101,14 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="2d5-8T-h63" secondAttribute="trailing" constant="10" id="2qs-Li-4gi"/>
                 <constraint firstItem="PHb-DP-WzT" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="2d5-8T-h63" secondAttribute="trailing" id="2s1-DG-GLx"/>
                 <constraint firstItem="f3R-99-A7O" firstAttribute="centerY" secondItem="XpZ-pa-MUL" secondAttribute="centerY" id="3Ao-Vq-A5b"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="PHb-DP-WzT" secondAttribute="bottom" constant="20" id="4yY-8W-7Sc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="PHb-DP-WzT" secondAttribute="bottom" constant="10" id="4yY-8W-7Sc"/>
                 <constraint firstItem="PHb-DP-WzT" firstAttribute="top" secondItem="UGe-tG-0cW" secondAttribute="bottom" constant="10" id="FOX-YH-Zgd"/>
                 <constraint firstItem="vPC-2Y-Mfw" firstAttribute="centerY" secondItem="tKl-ka-RCM" secondAttribute="centerY" id="HQU-g5-ctv"/>
                 <constraint firstItem="XpZ-pa-MUL" firstAttribute="top" secondItem="UGe-tG-0cW" secondAttribute="top" id="IGt-7v-8xr"/>
                 <constraint firstItem="tKl-ka-RCM" firstAttribute="bottom" secondItem="YOJ-5B-5fN" secondAttribute="bottom" id="Knz-ex-aGf"/>
                 <constraint firstItem="YOJ-5B-5fN" firstAttribute="trailing" secondItem="UGe-tG-0cW" secondAttribute="trailing" constant="-1" id="UmW-Kz-PiU"/>
                 <constraint firstItem="2d5-8T-h63" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="15" id="adL-eR-Jq4"/>
+                <constraint firstItem="2d5-8T-h63" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="f3R-99-A7O" secondAttribute="trailing" constant="10" id="cC8-rT-jcL"/>
                 <constraint firstItem="UGe-tG-0cW" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="i2b-Fs-XnP"/>
                 <constraint firstItem="UGe-tG-0cW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="jLq-LJ-rNN"/>
                 <constraint firstItem="XpZ-pa-MUL" firstAttribute="leading" secondItem="UGe-tG-0cW" secondAttribute="trailing" constant="15" id="lvE-VI-jjB"/>

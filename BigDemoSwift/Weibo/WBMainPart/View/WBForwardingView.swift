@@ -29,7 +29,7 @@ class WBForwardingView: UIControl {
                     
                     self.content.addSubview(imageView)
                     imageView.snp.makeConstraints({ (make) in
-                        make.top.equalTo(contentLabel.snp.bottom).offset(5)
+                        make.top.equalTo(contentLabel.snp.bottom).offset(7)
                         make.left.equalTo(contentLabel)
                         make.width.equalTo(250)
                         make.height.equalTo((250.0/(image?.size.width)!)*(image?.size.height)!)
@@ -53,7 +53,7 @@ class WBForwardingView: UIControl {
                         imageView.snp.makeConstraints({ (make) in
                             //第一个
                             if i == 0{
-                                make.top.equalTo(self.contentLabel.snp.bottom).offset(5)
+                                make.top.equalTo(self.contentLabel.snp.bottom).offset(7)
                                 make.left.equalTo(10)
                             }else if i % 3 == 0{
                                 //第一列

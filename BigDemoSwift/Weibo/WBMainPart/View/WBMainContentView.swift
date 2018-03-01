@@ -55,7 +55,7 @@ class WBMainContentView: UIView {
             //时间
             self.timeLabel.text = model?.getTimeString()
             //来源
-            if (model?.from?.isEmpty)! {
+            if (model?.from?.isEmpty)! || (model?.from == "") || (model?.from == "微博weibo.com"){
                 self.fromButton.setTitle("微博weibo.com", for: UIControlState.normal)
                 self.fromButton.setTitleColor(UIColor.lightGray, for: UIControlState.normal)
             }else{
@@ -85,7 +85,7 @@ class WBMainContentView: UIView {
                     self.content.addSubview(imageView)
                     self.subViewArray.append(imageView)
                     imageView.snp.makeConstraints({ (make) in
-                        make.top.equalTo(contentLabel.snp.bottom).offset(5)
+                        make.top.equalTo(contentLabel.snp.bottom).offset(7)
                         make.left.equalTo(contentLabel)
                         make.width.equalTo(250)
                         make.height.equalTo((250.0/(image?.size.width)!)*(image?.size.height)!)
@@ -110,7 +110,7 @@ class WBMainContentView: UIView {
                         imageView.snp.makeConstraints({ (make) in
                             //第一个
                             if i == 0{
-                                make.top.equalTo(self.contentLabel.snp.bottom).offset(5)
+                                make.top.equalTo(self.contentLabel.snp.bottom).offset(7)
                                 make.left.equalTo(self.headIcon)
                             }else if i % 3 == 0{
                                 //第一列
@@ -141,7 +141,7 @@ class WBMainContentView: UIView {
                 self.content.addSubview(fw)
                 self.subViewArray.append(fw)
                 fw.snp.makeConstraints({ (make) in
-                    make.top.equalTo(self.contentLabel.snp.bottom).offset(5)
+                    make.top.equalTo(self.contentLabel.snp.bottom).offset(7)
                     make.left.equalTo(0)
                     make.right.equalTo(0)
                     make.bottom.equalTo(0)
