@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import SnapKit
 
 class WBMainContentView: UIView {
 
-    var fatherView:UIView?
+//    var fatherView:UIView?
     
     @IBOutlet weak var headIcon: UIImageView!
     @IBOutlet weak var cornerIcon: UIImageView!
@@ -20,6 +21,11 @@ class WBMainContentView: UIView {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var contentLabel: XXLinkLabel!
     @IBOutlet weak var vipLevelImage: UIImageView!
+    @IBOutlet weak var nineImageView: WBNineImageView!
+    @IBOutlet weak var forwardingView: WBForwardingView!
+    @IBOutlet weak var singleImageView: UIImageView!
+    
+    private var lastBottomConstraint:Constraint?
     
     var subViewArray = Array<UIView>()
     
@@ -66,92 +72,50 @@ class WBMainContentView: UIView {
             self.contentLabel.text = model?.content
             self.content.layoutIfNeeded()
             //内容下面的各种蛋疼的东西
-            for view in self.subViewArray {
-                view.removeFromSuperview()
-            }
-            self.subViewArray.removeAll()
-            //图片型
-            if model?.type == WBMainContentType.Image {
+            self.lastBottomConstraint?.deactivate()
+            let type = model?.type ?? WBMainContentType.Single
+            switch type {
+            case .Single:
+                self.singleImageView.isHidden = true
+                self.forwardingView.isHidden = true
+                self.nineImageView.isHidden = true
+            case .Image:
                 //单张
                 if model?.imageArray.count == 1{
+                    self.nineImageView.isHidden = true
+                    self.singleImageView.isHidden = false
+                    self.forwardingView.isHidden = true
+                    
                     let image = model?.imageArray[0]
-                    let imageView = UIImageView.init(image: image)
-                    
-                    imageView.isUserInteractionEnabled = true
-                    let tap = UITapGestureRecognizer.init(target: self, action: #selector(imageViewDidTap(tapGestureRecognizer:)))
-                    imageView.addGestureRecognizer(tap)
-                    imageView.tag = 0
-                    
-                    self.content.addSubview(imageView)
-                    self.subViewArray.append(imageView)
-                    imageView.snp.makeConstraints({ (make) in
-                        make.top.equalTo(contentLabel.snp.bottom).offset(7)
-                        make.left.equalTo(contentLabel)
+                    self.singleImageView.image = image
+                    self.singleImageView.snp.remakeConstraints({ (make) in
                         make.width.equalTo(250)
                         make.height.equalTo((250.0/(image?.size.width)!)*(image?.size.height)!)
-                        make.bottom.equalTo(-10)
+                    })
+                    self.singleImageView.snp.makeConstraints({ (make) in
+                        self.lastBottomConstraint = make.bottom.equalTo(-10).constraint
                     })
                 }else{
-                    //大于1张,九宫格
-                    var lastImageView:UIImageView?
-                    var lastLineImageView:UIImageView?
-                    for i in 0..<(model?.imageArray.count)!{
-                        let imageView = UIImageView.init(image: model?.imageArray[i])
-                        imageView.contentMode = UIViewContentMode.scaleAspectFill
-                        imageView.clipsToBounds = true
-                        
-                        imageView.isUserInteractionEnabled = true
-                        let tap = UITapGestureRecognizer.init(target: self, action: #selector(imageViewDidTap(tapGestureRecognizer:)))
-                        imageView.addGestureRecognizer(tap)
-                        imageView.tag = i
-                        
-                        self.content.addSubview(imageView)
-                        self.subViewArray.append(imageView)
-                        imageView.snp.makeConstraints({ (make) in
-                            //第一个
-                            if i == 0{
-                                make.top.equalTo(self.contentLabel.snp.bottom).offset(7)
-                                make.left.equalTo(self.headIcon)
-                            }else if i % 3 == 0{
-                                //第一列
-                                make.top.equalTo((lastLineImageView?.snp.bottom)!).offset(5)
-                                make.left.equalTo(self.headIcon)
-                            }else{
-                                //其他
-                                make.top.equalTo(lastImageView!)
-                                make.left.equalTo((lastImageView?.snp.right)!).offset(5)
-                            }
-                            make.width.height.equalTo((SCREEN_WIDTH-10*2-5*2)/3.0)
-                            //设置底边
-                            if i == (model?.imageArray.count)!-1{
-                                make.bottom.equalTo(-10)
-                            }
-                        })
-                        //如果是最后一个设置关联
-                        if i % 3 == 2{
-                            lastLineImageView = imageView
-                        }
-                        lastImageView = imageView
-                    }
+                    //多张
+                    self.nineImageView.isHidden = false
+                    self.singleImageView.isHidden = true
+                    self.forwardingView.isHidden = true
+                    
+                    self.nineImageView.imageArray = (self.model?.imageArray)!
+                    self.nineImageView.snp.makeConstraints({ (make) in
+                        self.lastBottomConstraint = make.bottom.equalTo(-10).constraint
+                    })
                 }
-            }else if model?.type == WBMainContentType.Forwarding{
-                //转发
-                let fw = WBForwardingView.init(frame: CGRect.init())
-                fw.model = self.model?.forwarding
-                self.content.addSubview(fw)
-                self.subViewArray.append(fw)
-                fw.snp.makeConstraints({ (make) in
-                    make.top.equalTo(self.contentLabel.snp.bottom).offset(7)
-                    make.left.equalTo(0)
-                    make.right.equalTo(0)
-                    make.bottom.equalTo(0)
+            case .Forwarding:
+                self.nineImageView.isHidden = true
+                self.singleImageView.isHidden = true
+                self.forwardingView.isHidden = false
+                self.forwardingView.model = model?.forwarding
+                self.forwardingView.snp.makeConstraints({ (make) in
+                    self.lastBottomConstraint = make.bottom.equalTo(-10).constraint
                 })
-                fw.contentLabel.delegate = self.contentLabel.delegate
-                if (self.fatherView?.isKind(of: WBMainTableViewCell.classForCoder()))!{
-                    let fatherV = self.fatherView as! WBMainTableViewCell
-                    fw.content.addTarget(fatherV, action: #selector(fatherV.forwardingViewDidClick(forwardingView:)), for: UIControlEvents.touchUpInside)
-                }
             }
+            self.content.layoutIfNeeded()
         }
     }
     
@@ -163,12 +127,18 @@ class WBMainContentView: UIView {
         initFromXIB()
         self.contentLabel.linkTextColor = AMEColor(r: 37, g: 139, b: 255)
         self.contentLabel.regularType = [.aboat,.topic,.url]
+        
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(imageViewDidTap(tapGestureRecognizer:)))
+        self.singleImageView.addGestureRecognizer(tap)
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
         initFromXIB()
         self.contentLabel.linkTextColor = AMEColor(r: 37, g: 139, b: 255)
         self.contentLabel.regularType = [.aboat,.topic,.url]
+        
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(imageViewDidTap(tapGestureRecognizer:)))
+        self.singleImageView.addGestureRecognizer(tap)
     }
     
     func initFromXIB() {

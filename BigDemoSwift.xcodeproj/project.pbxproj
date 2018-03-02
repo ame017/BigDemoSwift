@@ -22,6 +22,8 @@
 		181EC4992044010900993615 /* miku.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 181EC4982044010900993615 /* miku.jpg */; };
 		186D11F42044E342009F3242 /* WBForwardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D11F32044E342009F3242 /* WBForwardingView.swift */; };
 		186D11F62044E34E009F3242 /* WBForwardingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186D11F52044E34E009F3242 /* WBForwardingView.xib */; };
+		1875B7302047E50400B5A5AA /* WBNineImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875B72F2047E50400B5A5AA /* WBNineImageView.swift */; };
+		1875B7322047E51D00B5A5AA /* WBNineImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1875B7312047E51D00B5A5AA /* WBNineImageView.xib */; };
 		188C68492042396900ED544E /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C68482042396900ED544E /* Header.swift */; };
 		188C68D42042849C00ED544E /* headIcon0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 188C68AA2042849700ED544E /* headIcon0.jpg */; };
 		188C68D52042849C00ED544E /* headIcon9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 188C68AB2042849700ED544E /* headIcon9.jpg */; };
@@ -68,6 +70,7 @@
 		188C68FF2042850700ED544E /* WBMainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C68FE2042850700ED544E /* WBMainContentView.swift */; };
 		188C6901204286A300ED544E /* WBMainContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188C6900204286A300ED544E /* WBMainContentView.xib */; };
 		188C690320428CF600ED544E /* WBMainContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C690220428CF600ED544E /* WBMainContentModel.swift */; };
+		18D8301D2048FFA1008E5A44 /* WBMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D8301C2048FFA1008E5A44 /* WBMainTableViewCell.xib */; };
 		EA6EE33A4B4F6D637FC9B685 /* Pods_BigDemoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DBD0EB0DD1A87F6937D7C67 /* Pods_BigDemoSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +95,8 @@
 		181EC4982044010900993615 /* miku.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = miku.jpg; sourceTree = "<group>"; };
 		186D11F32044E342009F3242 /* WBForwardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBForwardingView.swift; sourceTree = "<group>"; };
 		186D11F52044E34E009F3242 /* WBForwardingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WBForwardingView.xib; sourceTree = "<group>"; };
+		1875B72F2047E50400B5A5AA /* WBNineImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBNineImageView.swift; sourceTree = "<group>"; };
+		1875B7312047E51D00B5A5AA /* WBNineImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WBNineImageView.xib; sourceTree = "<group>"; };
 		188C68482042396900ED544E /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		188C68AA2042849700ED544E /* headIcon0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = headIcon0.jpg; sourceTree = "<group>"; };
 		188C68AB2042849700ED544E /* headIcon9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = headIcon9.jpg; sourceTree = "<group>"; };
@@ -138,6 +143,7 @@
 		188C68FE2042850700ED544E /* WBMainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBMainContentView.swift; sourceTree = "<group>"; };
 		188C6900204286A300ED544E /* WBMainContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WBMainContentView.xib; sourceTree = "<group>"; };
 		188C690220428CF600ED544E /* WBMainContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBMainContentModel.swift; sourceTree = "<group>"; };
+		18D8301C2048FFA1008E5A44 /* WBMainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WBMainTableViewCell.xib; sourceTree = "<group>"; };
 		272C4BF05F750927A2BB3F04 /* Pods-BigDemoSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BigDemoSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BigDemoSwift/Pods-BigDemoSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		4E8F3ACB9C6DC5EB658410D6 /* Pods-BigDemoSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BigDemoSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-BigDemoSwift/Pods-BigDemoSwift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -247,7 +253,10 @@
 			isa = PBXGroup;
 			children = (
 				1803933C20400AEC00A12674 /* WBMainTableViewCell.swift */,
+				18D8301C2048FFA1008E5A44 /* WBMainTableViewCell.xib */,
 				1803933E20400B8900A12674 /* WBMainHeaderView.swift */,
+				1875B72F2047E50400B5A5AA /* WBNineImageView.swift */,
+				1875B7312047E51D00B5A5AA /* WBNineImageView.xib */,
 				188C68FE2042850700ED544E /* WBMainContentView.swift */,
 				188C6900204286A300ED544E /* WBMainContentView.xib */,
 				186D11F32044E342009F3242 /* WBForwardingView.swift */,
@@ -425,11 +434,13 @@
 				188C68DB2042849C00ED544E /* headIcon19.jpg in Resources */,
 				188C68EF2042849C00ED544E /* headIcon2.jpg in Resources */,
 				188C68F62042849C00ED544E /* headIcon5.jpg in Resources */,
+				18D8301D2048FFA1008E5A44 /* WBMainTableViewCell.xib in Resources */,
 				188C68D42042849C00ED544E /* headIcon0.jpg in Resources */,
 				188C68E22042849C00ED544E /* headIcon33.jpg in Resources */,
 				188C68DC2042849C00ED544E /* headIcon29.jpg in Resources */,
 				188C68D62042849C00ED544E /* headIcon20.jpg in Resources */,
 				188C68F72042849C00ED544E /* headIcon16.jpg in Resources */,
+				1875B7322047E51D00B5A5AA /* WBNineImageView.xib in Resources */,
 				188C68E92042849C00ED544E /* headIcon27.jpg in Resources */,
 				188C68F22042849C00ED544E /* headIcon10.jpg in Resources */,
 				188C68E32042849C00ED544E /* headIcon28.jpg in Resources */,
@@ -556,6 +567,7 @@
 				188C690320428CF600ED544E /* WBMainContentModel.swift in Sources */,
 				18039332203FF74500A12674 /* XXLinkLabel.m in Sources */,
 				1803931B203FE3A100A12674 /* ViewController.swift in Sources */,
+				1875B7302047E50400B5A5AA /* WBNineImageView.swift in Sources */,
 				18039319203FE3A100A12674 /* AppDelegate.swift in Sources */,
 				1803933A204006FF00A12674 /* WBMainViewController.swift in Sources */,
 			);

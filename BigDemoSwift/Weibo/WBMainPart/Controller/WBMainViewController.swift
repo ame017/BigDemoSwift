@@ -33,6 +33,9 @@ class WBMainViewController: WBBaseViewController, WBMainHeaderViewDelegate ,UITa
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         getData()
+        for i in 0...18 {
+            self.MainTable.register(UINib.init(nibName: "WBMainTableViewCell", bundle: nil), forCellReuseIdentifier: String(i))
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -121,7 +124,19 @@ class WBMainViewController: WBBaseViewController, WBMainHeaderViewDelegate ,UITa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? WBMainTableViewCell
+        //0 无图 1-9无转发n图 10-18有转发n图
+        let model = self.dataArray[indexPath.row]
+        let type = model.type ?? WBMainContentType.Single
+        var identity = "0"
+        switch type {
+        case .Single:
+            identity = "0"
+        case .Forwarding:
+            identity = String((model.forwarding?.imageArray.count)!+9)
+        default:
+            identity = String(model.imageArray.count)
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: identity) as? WBMainTableViewCell
         cell?.model = self.dataArray[indexPath.row]
         cell?.delegate = self
         cell?.tableView = tableView

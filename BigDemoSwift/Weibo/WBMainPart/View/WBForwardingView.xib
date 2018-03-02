@@ -14,6 +14,8 @@
             <connections>
                 <outlet property="content" destination="iN0-l3-epB" id="i5z-Cq-BGY"/>
                 <outlet property="contentLabel" destination="7oe-eC-ZUM" id="zSa-ff-TuA"/>
+                <outlet property="nineImageView" destination="Enm-gc-0wT" id="AeH-i4-sFr"/>
+                <outlet property="singleImageView" destination="eNj-3i-Dd6" id="z5B-N3-hap"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -27,13 +29,27 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="Enm-gc-0wT" customClass="WBNineImageView" customModule="BigDemoSwift" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="35" width="375" height="128"/>
+                </view>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="eNj-3i-Dd6">
+                    <rect key="frame" x="10" y="35" width="250" height="128"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="250" id="qrU-fM-r22"/>
+                    </constraints>
+                </imageView>
             </subviews>
-            <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" red="0.96852236986160278" green="0.96868795156478882" blue="0.96851199865341187" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7oe-eC-ZUM" secondAttribute="trailing" constant="10" id="9F3-Qu-SbU"/>
+                <constraint firstItem="Enm-gc-0wT" firstAttribute="top" secondItem="7oe-eC-ZUM" secondAttribute="bottom" constant="7" id="FYQ-WZ-zgA"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Enm-gc-0wT" secondAttribute="trailing" id="Jik-iw-Npa"/>
                 <constraint firstItem="7oe-eC-ZUM" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="LUr-6V-6zq"/>
                 <constraint firstItem="7oe-eC-ZUM" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="Mgg-aj-D8E"/>
+                <constraint firstItem="eNj-3i-Dd6" firstAttribute="leading" secondItem="7oe-eC-ZUM" secondAttribute="leading" id="cyp-aV-RNj"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7oe-eC-ZUM" secondAttribute="bottom" constant="10" id="ms9-zy-qa2"/>
+                <constraint firstItem="eNj-3i-Dd6" firstAttribute="top" secondItem="7oe-eC-ZUM" secondAttribute="bottom" constant="7" id="n4I-pY-y17"/>
+                <constraint firstItem="Enm-gc-0wT" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="vpZ-vP-EBv"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

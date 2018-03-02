@@ -46,9 +46,14 @@ class WBMainTableViewCell: UITableViewCell,XXLinkLabelDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        mainContentView.fatherView = self
         mainContentView.contentLabel.delegate = self
         mainContentView.contentLabel.extend = self
+        mainContentView.forwardingView.contentLabel.delegate = self
+        
+        mainContentView.forwardingView.content.addTarget(self, action: #selector(forwardingViewDidClick(forwardingView:)), for: UIControlEvents.touchUpInside)
+        let tap0 = UITapGestureRecognizer.init(target: self, action: #selector(forwardingNineImageViewClick(tapGestureRecognizer:)))
+        mainContentView.forwardingView.nineImageView.content.addGestureRecognizer(tap0)
+        
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(HeadIconDidTap(tapGestureRecognizer:)))
         mainContentView.headIcon.addGestureRecognizer(tap)
         mainContentView.fromButton.addTarget(self, action: #selector(fromButtonDidClick(button:)), for: UIControlEvents.touchUpInside)
@@ -99,6 +104,10 @@ class WBMainTableViewCell: UITableViewCell,XXLinkLabelDelegate {
     @objc func forwardingViewDidClick(forwardingView:WBForwardingView) -> Void {
         self.delegate?.wb_mainTableViewCellForwardingViewDidClick?(self)
     }
+    @objc func forwardingNineImageViewClick(tapGestureRecognizer:UITapGestureRecognizer) -> Void {
+        self.delegate?.wb_mainTableViewCellForwardingViewDidClick?(self)
+    }
+    
     @IBAction func forwardingButtonDidClick(_ sender: UIButton) {
         self.delegate?.wb_mainTableViewCellForwardingButtonDidClick?(self)
     }

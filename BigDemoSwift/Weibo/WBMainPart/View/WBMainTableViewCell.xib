@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WBMainTableViewCell" customModule="BigDemoSwift" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="234" id="6PC-SE-qa6" customClass="WBMainTableViewCell" customModule="BigDemoSwift" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="234"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6PC-SE-qa6" id="snB-3d-eTq">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="233.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="k1c-hd-1zl" customClass="WBMainContentView" customModule="BigDemoSwift" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="202.5"/>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9NW-SX-Rbv">
+                        <rect key="frame" x="0.0" y="203.5" width="125" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="B4H-VU-gm9"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title="转发" image="artical_detail_icon_repost">
+                            <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="forwardingButtonDidClick:" destination="6PC-SE-qa6" eventType="touchUpInside" id="EeA-lh-oRH"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="di8-i6-g3t">
+                        <rect key="frame" x="125" y="203.5" width="125" height="30"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title="评论" image="artical_detail_icon_comment">
+                            <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="remarkButtonDidClick:" destination="6PC-SE-qa6" eventType="touchUpInside" id="rRL-4o-QkF"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqL-b6-u38">
+                        <rect key="frame" x="250" y="203.5" width="125" height="30"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title="点赞" image="artical_detail_icon_like">
+                            <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="likeButtonClick:" destination="6PC-SE-qa6" eventType="touchUpInside" id="Fmb-AL-pbh"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9n6-QX-C90">
+                        <rect key="frame" x="20" y="202.5" width="335" height="1"/>
+                        <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="pP5-sk-pX7"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="di8-i6-g3t" firstAttribute="centerY" secondItem="9NW-SX-Rbv" secondAttribute="centerY" id="Apf-aI-dNb"/>
+                    <constraint firstItem="di8-i6-g3t" firstAttribute="width" secondItem="9NW-SX-Rbv" secondAttribute="width" id="FOL-XQ-7dR"/>
+                    <constraint firstItem="9NW-SX-Rbv" firstAttribute="top" secondItem="9n6-QX-C90" secondAttribute="bottom" id="HSc-S3-0Xa"/>
+                    <constraint firstAttribute="trailing" secondItem="mqL-b6-u38" secondAttribute="trailing" id="K8H-Gd-lWA"/>
+                    <constraint firstItem="mqL-b6-u38" firstAttribute="leading" secondItem="di8-i6-g3t" secondAttribute="trailing" id="NNc-6o-s4O"/>
+                    <constraint firstItem="9NW-SX-Rbv" firstAttribute="leading" secondItem="snB-3d-eTq" secondAttribute="leading" id="VID-f5-DU1"/>
+                    <constraint firstItem="di8-i6-g3t" firstAttribute="height" secondItem="9NW-SX-Rbv" secondAttribute="height" id="aWk-mF-1jM"/>
+                    <constraint firstItem="mqL-b6-u38" firstAttribute="width" secondItem="9NW-SX-Rbv" secondAttribute="width" id="aw9-el-tCo"/>
+                    <constraint firstItem="9n6-QX-C90" firstAttribute="leading" secondItem="snB-3d-eTq" secondAttribute="leading" constant="20" id="bhl-59-Ce8"/>
+                    <constraint firstItem="mqL-b6-u38" firstAttribute="height" secondItem="9NW-SX-Rbv" secondAttribute="height" id="g7j-Yc-9X4"/>
+                    <constraint firstItem="di8-i6-g3t" firstAttribute="leading" secondItem="9NW-SX-Rbv" secondAttribute="trailing" id="gkL-Mc-V1J"/>
+                    <constraint firstItem="k1c-hd-1zl" firstAttribute="top" secondItem="snB-3d-eTq" secondAttribute="top" id="hyY-bC-tIj"/>
+                    <constraint firstItem="mqL-b6-u38" firstAttribute="centerY" secondItem="di8-i6-g3t" secondAttribute="centerY" id="oVG-i5-KLl"/>
+                    <constraint firstAttribute="bottom" secondItem="9NW-SX-Rbv" secondAttribute="bottom" id="pSB-2i-Xh6"/>
+                    <constraint firstItem="k1c-hd-1zl" firstAttribute="leading" secondItem="snB-3d-eTq" secondAttribute="leading" id="rPS-Pv-2bP"/>
+                    <constraint firstAttribute="trailing" secondItem="9n6-QX-C90" secondAttribute="trailing" constant="20" id="ruP-IX-7Q0"/>
+                    <constraint firstAttribute="trailing" secondItem="k1c-hd-1zl" secondAttribute="trailing" id="sHw-Q1-f1s"/>
+                    <constraint firstItem="9n6-QX-C90" firstAttribute="top" secondItem="k1c-hd-1zl" secondAttribute="bottom" id="t79-vs-yea"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="forwardingButton" destination="9NW-SX-Rbv" id="CIV-hc-mpC"/>
+                <outlet property="likeButton" destination="mqL-b6-u38" id="vd2-X9-3Yw"/>
+                <outlet property="mainContentView" destination="k1c-hd-1zl" id="h0Y-Es-OQA"/>
+                <outlet property="remarkButton" destination="di8-i6-g3t" id="Zgl-1t-kle"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="artical_detail_icon_comment" width="22" height="22"/>
+        <image name="artical_detail_icon_like" width="22" height="22"/>
+        <image name="artical_detail_icon_repost" width="22" height="22"/>
+    </resources>
+</document>
