@@ -12,7 +12,6 @@
 		1803931E203FE3A100A12674 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1803931C203FE3A100A12674 /* Main.storyboard */; };
 		18039320203FE3A100A12674 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1803931F203FE3A100A12674 /* Assets.xcassets */; };
 		18039323203FE3A100A12674 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18039321203FE3A100A12674 /* LaunchScreen.storyboard */; };
-		1803932C203FE76800A12674 /* Weibo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1803932A203FE76800A12674 /* Weibo.storyboard */; };
 		18039332203FF74500A12674 /* XXLinkLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18039330203FF74500A12674 /* XXLinkLabel.m */; };
 		18039338204006B200A12674 /* WBBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18039337204006B200A12674 /* WBBaseViewController.swift */; };
 		1803933A204006FF00A12674 /* WBMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18039339204006FF00A12674 /* WBMainViewController.swift */; };
@@ -70,6 +69,10 @@
 		188C68FF2042850700ED544E /* WBMainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C68FE2042850700ED544E /* WBMainContentView.swift */; };
 		188C6901204286A300ED544E /* WBMainContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188C6900204286A300ED544E /* WBMainContentView.xib */; };
 		188C690320428CF600ED544E /* WBMainContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C690220428CF600ED544E /* WBMainContentModel.swift */; };
+		1892B7C820511FA20049192D /* Eleme.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1892B7C720511FA20049192D /* Eleme.storyboard */; };
+		1892B7CA20511FDF0049192D /* Weibo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1892B7C920511FDF0049192D /* Weibo.storyboard */; };
+		1892B7D3205128640049192D /* ELMBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892B7D2205128640049192D /* ELMBaseViewController.swift */; };
+		1892B7D5205128850049192D /* ELMMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892B7D4205128850049192D /* ELMMenuViewController.swift */; };
 		18D8301D2048FFA1008E5A44 /* WBMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D8301C2048FFA1008E5A44 /* WBMainTableViewCell.xib */; };
 		EA6EE33A4B4F6D637FC9B685 /* Pods_BigDemoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DBD0EB0DD1A87F6937D7C67 /* Pods_BigDemoSwift.framework */; };
 /* End PBXBuildFile section */
@@ -83,7 +86,6 @@
 		1803931F203FE3A100A12674 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18039322203FE3A100A12674 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18039324203FE3A100A12674 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1803932B203FE76800A12674 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = BigDemoSwift/Base.lproj/Weibo.storyboard; sourceTree = "<group>"; };
 		1803932F203FF74400A12674 /* BigDemoSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BigDemoSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		18039330203FF74500A12674 /* XXLinkLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXLinkLabel.m; sourceTree = "<group>"; };
 		18039331203FF74500A12674 /* XXLinkLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXLinkLabel.h; sourceTree = "<group>"; };
@@ -143,6 +145,10 @@
 		188C68FE2042850700ED544E /* WBMainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBMainContentView.swift; sourceTree = "<group>"; };
 		188C6900204286A300ED544E /* WBMainContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WBMainContentView.xib; sourceTree = "<group>"; };
 		188C690220428CF600ED544E /* WBMainContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBMainContentModel.swift; sourceTree = "<group>"; };
+		1892B7C720511FA20049192D /* Eleme.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Eleme.storyboard; sourceTree = "<group>"; };
+		1892B7C920511FDF0049192D /* Weibo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Weibo.storyboard; sourceTree = "<group>"; };
+		1892B7D2205128640049192D /* ELMBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ELMBaseViewController.swift; sourceTree = "<group>"; };
+		1892B7D4205128850049192D /* ELMMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ELMMenuViewController.swift; sourceTree = "<group>"; };
 		18D8301C2048FFA1008E5A44 /* WBMainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WBMainTableViewCell.xib; sourceTree = "<group>"; };
 		272C4BF05F750927A2BB3F04 /* Pods-BigDemoSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BigDemoSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BigDemoSwift/Pods-BigDemoSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		4E8F3ACB9C6DC5EB658410D6 /* Pods-BigDemoSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BigDemoSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-BigDemoSwift/Pods-BigDemoSwift.release.xcconfig"; sourceTree = "<group>"; };
@@ -181,6 +187,7 @@
 		18039317203FE3A100A12674 /* BigDemoSwift */ = {
 			isa = PBXGroup;
 			children = (
+				1892B7C620511F530049192D /* Eleme */,
 				180393332040061E00A12674 /* Weibo */,
 				1803932E203FF70D00A12674 /* Tools */,
 				1803932D203FF70000A12674 /* Header */,
@@ -215,10 +222,10 @@
 		180393332040061E00A12674 /* Weibo */ = {
 			isa = PBXGroup;
 			children = (
+				1892B7C920511FDF0049192D /* Weibo.storyboard */,
 				188C684A2042444100ED544E /* WBImage */,
 				180393362040068F00A12674 /* WBBase */,
 				180393342040066000A12674 /* WBMainPart */,
-				1803932A203FE76800A12674 /* Weibo.storyboard */,
 			);
 			path = Weibo;
 			sourceTree = "<group>";
@@ -340,6 +347,56 @@
 			path = headerImage;
 			sourceTree = "<group>";
 		};
+		1892B7C620511F530049192D /* Eleme */ = {
+			isa = PBXGroup;
+			children = (
+				1892B7C720511FA20049192D /* Eleme.storyboard */,
+				1892B7CD205127C60049192D /* ELMMenuPart */,
+				1892B7CB205127A90049192D /* ELMBase */,
+			);
+			path = Eleme;
+			sourceTree = "<group>";
+		};
+		1892B7CB205127A90049192D /* ELMBase */ = {
+			isa = PBXGroup;
+			children = (
+				1892B7D2205128640049192D /* ELMBaseViewController.swift */,
+			);
+			path = ELMBase;
+			sourceTree = "<group>";
+		};
+		1892B7CD205127C60049192D /* ELMMenuPart */ = {
+			isa = PBXGroup;
+			children = (
+				1892B7CE205128140049192D /* Model */,
+				1892B7D0205128250049192D /* View */,
+				1892B7D12051282B0049192D /* Controller */,
+			);
+			path = ELMMenuPart;
+			sourceTree = "<group>";
+		};
+		1892B7CE205128140049192D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1892B7D0205128250049192D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1892B7D12051282B0049192D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1892B7D4205128850049192D /* ELMMenuViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		34156154243E3B2FDCE8C7BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,6 +482,7 @@
 				188C68E62042849C00ED544E /* headIcon17.jpg in Resources */,
 				188C68DE2042849C00ED544E /* headIcon23.jpg in Resources */,
 				188C68E52042849C00ED544E /* headIcon41.jpg in Resources */,
+				1892B7CA20511FDF0049192D /* Weibo.storyboard in Resources */,
 				188C68D92042849C00ED544E /* headIcon26.jpg in Resources */,
 				188C68DD2042849C00ED544E /* headIcon34.jpg in Resources */,
 				188C68E72042849C00ED544E /* headIcon32.jpg in Resources */,
@@ -443,6 +501,7 @@
 				1875B7322047E51D00B5A5AA /* WBNineImageView.xib in Resources */,
 				188C68E92042849C00ED544E /* headIcon27.jpg in Resources */,
 				188C68F22042849C00ED544E /* headIcon10.jpg in Resources */,
+				1892B7C820511FA20049192D /* Eleme.storyboard in Resources */,
 				188C68E32042849C00ED544E /* headIcon28.jpg in Resources */,
 				188C68EB2042849C00ED544E /* headIcon8.jpg in Resources */,
 				188C68E42042849C00ED544E /* headIcon40.jpg in Resources */,
@@ -456,7 +515,6 @@
 				188C68E82042849C00ED544E /* headIcon14.jpg in Resources */,
 				188C68D72042849C00ED544E /* headIcon12.jpg in Resources */,
 				188C68ED2042849C00ED544E /* headIcon35.jpg in Resources */,
-				1803932C203FE76800A12674 /* Weibo.storyboard in Resources */,
 				188C68FD2042849C00ED544E /* headIcon37.jpg in Resources */,
 				188C68DA2042849C00ED544E /* headIcon25.jpg in Resources */,
 				188C68E02042849C00ED544E /* headIcon39.jpg in Resources */,
@@ -561,8 +619,10 @@
 				188C68FF2042850700ED544E /* WBMainContentView.swift in Sources */,
 				18039338204006B200A12674 /* WBBaseViewController.swift in Sources */,
 				188C68492042396900ED544E /* Header.swift in Sources */,
+				1892B7D3205128640049192D /* ELMBaseViewController.swift in Sources */,
 				1803933F20400B8900A12674 /* WBMainHeaderView.swift in Sources */,
 				1803934420400CA100A12674 /* WBMainHeaderModel.swift in Sources */,
+				1892B7D5205128850049192D /* ELMMenuViewController.swift in Sources */,
 				1803933D20400AEC00A12674 /* WBMainTableViewCell.swift in Sources */,
 				188C690320428CF600ED544E /* WBMainContentModel.swift in Sources */,
 				18039332203FF74500A12674 /* XXLinkLabel.m in Sources */,
@@ -590,14 +650,6 @@
 				18039322203FE3A100A12674 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		1803932A203FE76800A12674 /* Weibo.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1803932B203FE76800A12674 /* Base */,
-			);
-			name = Weibo.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
