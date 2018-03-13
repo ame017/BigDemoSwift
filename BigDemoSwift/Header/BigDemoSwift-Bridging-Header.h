@@ -7,3 +7,4 @@
 #import "SVProgressHUD.h"
 #import "XLPhotoBrowser.h"
 #import "UIScrollView+EmptyDataSet.h"
+#import "GRStarsView.h"

@@ -10,26 +10,59 @@ import UIKit
 import FDFullscreenPopGesture
 
 class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableViewDelegate, UITableViewDataSource {
-
-    @IBOutlet weak var topHeight: NSLayoutConstraint!
-    @IBOutlet weak var tableTopHeight: NSLayoutConstraint!
-    let lastOffset:CGFloat = 0
+    
+    let topViewUpHeight:CGFloat = CGFloat(kStatusBarAndNavigationBarHeight)
+    let topViewDownHeight:CGFloat = 100 + CGFloat(kStatusBarAndNavigationBarHeight)
+    let headIconMaxWidth:CGFloat = 80
+    let likeButtonMaxWidth:CGFloat = 30
+    let goBackButtonShowHeight:CGFloat = 80
+    //默认150
+    var tableViewUpTop:CGFloat = 100 + CGFloat(kStatusBarAndNavigationBarHeight) + 150
+    let tableviewDownTop:CGFloat = SCREEN_HEIGHT - 80
+    
+    let goBackButtonStartShowHeight:CGFloat = (100 + CGFloat(kStatusBarAndNavigationBarHeight) + 150) + (SCREEN_HEIGHT - 80 - (100 + CGFloat(kStatusBarAndNavigationBarHeight) + 150))/2.0
+    
+    let searchButtonStartShowHeight:CGFloat = CGFloat(kStatusBarAndNavigationBarHeight+50)
+    let searchButtonOverShowHeight:CGFloat = CGFloat(kStatusBarAndNavigationBarHeight)
+    
     @IBOutlet weak var goBackButtonView: UIView!
     @IBOutlet weak var tableview: UITableView!
-    @IBOutlet weak var headWidth: NSLayoutConstraint!
+    @IBOutlet weak var topBackImageView: UIImageView!
+    @IBOutlet weak var headIconImageView: UIImageView!
+    @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var miniSearchButton: UIButton!
+    @IBOutlet weak var pinButton: UIButton!
+    @IBOutlet weak var moreButton: UIButton!
     
+    @IBOutlet weak var backView: ELMMenuBackView!
+    
+    
+    @IBOutlet weak var backTopHeight: NSLayoutConstraint!
+    @IBOutlet weak var topHeight: NSLayoutConstraint!
+    @IBOutlet weak var tableTopHeight: NSLayoutConstraint!
+    @IBOutlet weak var headWidth: NSLayoutConstraint!
+    @IBOutlet weak var headOffset: NSLayoutConstraint!
+    //MARK: - lifeCircle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.fd_prefersNavigationBarHidden = true
         self.goBackButtonView.alpha = 0
+        self.backView.content.addTarget(self, action: #selector(self.backViewClick(_:)), for: UIControlEvents.touchUpInside)
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+    }
+    //MARK: - tableView
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -38,48 +71,21 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if indexPath.section == 0{
-//            var cell = tableView.dequeueReusableCell(withIdentifier: "0")
-//            if cell == nil{
-//                cell = UITableViewCell.init(style: UITableViewCellStyle.subtitle, reuseIdentifier: "0")
-//                cell!.backgroundColor = UIColor.clear
-//                cell?.isUserInteractionEnabled = false
-//            }
-//            return cell!
-//        }else{
-            var cell = tableView.dequeueReusableCell(withIdentifier: "1")
-            if cell == nil{
-                cell = UITableViewCell.init(style: UITableViewCellStyle.subtitle, reuseIdentifier: "1")
-                cell!.backgroundColor = UIColor.blue
-            }
-
-            return cell!
-//        }
+        let cell = tableview.dequeueReusableCell(withIdentifier: "OneScrollCell")
+        return cell!
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if indexPath.section == 0 {
-//            return 667+164+150
-//        }else{
-            return 667-30-64
-//        }
+        return 667-30-64
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        if section == 0 {
-//            return 0.01
-//        }else{
-            return 30
-//        }
+        return 30
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        if section == 0 {
-//            return UIView.init()
-//        }else{
-            let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: SCREEN_WIDTH, height: 30))
-            view.backgroundColor = UIColor.orange
-            return view
-//        }
+        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: SCREEN_WIDTH, height: 30))
+        view.backgroundColor = UIColor.orange
+        return view
     }
-    @IBAction func backViewClick(_ sender: UIControl) {
+    @objc func backViewClick(_ sender: UIControl) {
         print("aoao")
         self.goToBottom()
     }
@@ -89,46 +95,99 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
 //        let del = contentOffset - lastOffset
         if contentOffset > 0 {
             //上推
-            if topHeight.constant <= 64{
-                topHeight.constant = 64
+            //如果top的高度小于最小值 赋值最小值
+            if tableTopHeight.constant <= tableViewUpTop{
+                if topHeight.constant <= topViewUpHeight{
+                    topHeight.constant = topViewUpHeight
+                }else{
+                    //否则当table在初始位置之上的时候减少top的height
+                    if tableTopHeight.constant < tableviewDownTop{
+                        scrollView.contentOffset = CGPoint.init(x: 0, y: 0)
+                        topHeight.constant -= contentOffset
+                    }
+                }
+            }
+            //如果table的上距离小于最小值 赋值最小值
+            if tableTopHeight.constant <= topViewUpHeight{
+                tableTopHeight.constant = topViewUpHeight
             }else{
-                if tableTopHeight.constant < (164+150){
+                //否则上推table
+                scrollView.contentOffset = CGPoint.init(x: 0, y: 0)
+                tableTopHeight.constant -= contentOffset
+//                //如果top到顶
+//                if topHeight.constant <= topViewUpHeight{
+//                    backTopHeight.constant -= contentOffset
+//                }
+            }
+        }else{
+            //下拉
+            if tableTopHeight.constant >= tableViewUpTop-(topViewDownHeight-topViewUpHeight){
+                //如果topview的高度大于最大值 赋值最大值
+                if topHeight.constant >= topViewDownHeight{
+                    topHeight.constant = topViewDownHeight
+                }else{
+                    //否则下拉
                     scrollView.contentOffset = CGPoint.init(x: 0, y: 0)
                     topHeight.constant -= contentOffset
                 }
             }
-            if tableTopHeight.constant <= 64{
-                tableTopHeight.constant = 64
+            //如果tableview的上边缘大于最大值 赋值最大值
+            if tableTopHeight.constant >= tableviewDownTop{
+                tableTopHeight.constant = tableviewDownTop
             }else{
+                //否则下拉
                 scrollView.contentOffset = CGPoint.init(x: 0, y: 0)
                 tableTopHeight.constant -= contentOffset
-            }
-        }else{
-            if topHeight.constant >= 164{
-                topHeight.constant = 164
-            }else{
-                topHeight.constant -= contentOffset
-            }
-            if tableTopHeight.constant >= (667-80){
-                tableTopHeight.constant = 667-80
-            }else{
-                scrollView.contentOffset = CGPoint.init(x: 0, y: 0)
-                tableTopHeight.constant -= contentOffset
+//                //top没到底
+//                if topHeight.constant > topViewDownHeight{
+//                    backTopHeight.constant -= contentOffset
+//                }
+//                //如果top到底
+//                if topHeight.constant >= topViewDownHeight{
+//                    backTopHeight.constant = 0
+//                }
             }
         }
-        if tableTopHeight.constant > 150+164+150{
-            tableview.alpha = 1.0/((667-80-(150+164+150))/(tableTopHeight.constant-(150+164+150)))
-            goBackButtonView.alpha = ((667-80-(150+164+150))/(tableTopHeight.constant-(150+164+150)))
+        //渐变向上按钮
+        if tableTopHeight.constant > tableViewUpTop{
+            tableview.alpha = 1-(tableTopHeight.constant - goBackButtonStartShowHeight)/goBackButtonShowHeight
+            goBackButtonView.alpha = (tableTopHeight.constant - goBackButtonStartShowHeight)/goBackButtonShowHeight
         }
-        if tableTopHeight.constant < 150+164 && tableTopHeight.constant > 164+50{
-            headWidth.constant = tableTopHeight.constant - (164+50)
+        //头像变化范围
+        if tableTopHeight.constant < tableViewUpTop && tableTopHeight.constant > tableViewUpTop - headIconMaxWidth{
+            headWidth.constant = tableTopHeight.constant - (tableViewUpTop - headIconMaxWidth+20)
+            headOffset.constant = -((headWidth.constant)/headIconMaxWidth)*20
+            headIconImageView.alpha = (headWidth.constant)/headIconMaxWidth
+        }
+        if tableTopHeight.constant <= tableViewUpTop - headIconMaxWidth {
+            headWidth.constant = 0
+            headIconImageView.alpha = 0
+        }
+        if tableTopHeight.constant >= tableViewUpTop {
+            headWidth.constant = headIconMaxWidth
+            headIconImageView.alpha = 1
+        }
+        //标题变化范围
+        if topHeight.constant < searchButtonStartShowHeight && topHeight.constant > searchButtonOverShowHeight {
+            self.pinButton.alpha = (topHeight.constant - searchButtonOverShowHeight)/(searchButtonStartShowHeight-searchButtonOverShowHeight)
+            self.miniSearchButton.alpha = (topHeight.constant - searchButtonOverShowHeight)/(searchButtonStartShowHeight-searchButtonOverShowHeight)
+            self.searchButton.alpha = 1 - (topHeight.constant - searchButtonOverShowHeight)/(searchButtonStartShowHeight-searchButtonOverShowHeight)
+        }
+        if topHeight.constant <= searchButtonOverShowHeight {
+            self.pinButton.alpha = 0
+            self.miniSearchButton.alpha = 0
+            self.searchButton.alpha = 1
+        }
+        if topHeight.constant >= searchButtonStartShowHeight {
+            self.pinButton.alpha = 1
+            self.miniSearchButton.alpha = 1
+            self.searchButton.alpha = 0
         }
     }
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        print("1111")
-        if tableTopHeight.constant < 150+164+150 && tableTopHeight.constant > 150+164 {
+        if tableTopHeight.constant < goBackButtonStartShowHeight && tableTopHeight.constant > tableViewUpTop {
             self.returnToNormal()
-        }else if tableTopHeight.constant >= 150+164+150{
+        }else if tableTopHeight.constant >= goBackButtonStartShowHeight{
             self.goToBottom()
         }
     }
@@ -137,7 +196,7 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
         self.returnToNormal()
     }
     func returnToNormal() -> Void {
-        tableTopHeight.constant = 150+164
+        tableTopHeight.constant = tableViewUpTop
         UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
             self.tableview.alpha = 1
@@ -147,7 +206,7 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
         }
     }
     func goToBottom() -> Void {
-        tableTopHeight.constant = 667-80
+        tableTopHeight.constant = tableviewDownTop
         UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
             self.tableview.alpha = 0

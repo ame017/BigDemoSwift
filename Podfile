@@ -13,6 +13,7 @@ pod 'SVProgressHUD'
 pod 'FDFullscreenPopGesture'
 pod 'XLPhotoBrowser+CoderXL'
 pod 'DZNEmptyDataSet'
+pod 'GRStarsView'
 
 #swift
 pod 'HandyJSON', '~> 4.0.0-beta.1'

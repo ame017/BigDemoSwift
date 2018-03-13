@@ -28,6 +28,34 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>我们需要您打开媒体库权限用于查看照片</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>我们需要您打开蓝牙权限用于连接蓝牙打印机</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>App需要您的同意,才能访问日历</string>
+	<key>NSCameraUsageDescription</key>
+	<string>我们需要您打开相机权限用于扫码与拍照</string>
+	<key>NSContactsUsageDescription</key>
+	<string>我们需要您打开联系人权限用于直接从手机导入常用联系人</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>App需要您的同意,才能访问健康分享</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>App需要您的同意,才能访问健康更新 </string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>App需要您的位置信息用于路径规划与导航</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>App需要您的位置信息用于路径规划与导航</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>我们需要您打开麦克风权限用于使用语音功能</string>
+	<key>NSMotionUsageDescription</key>
+	<string>App需要您的同意,才能访问运动与健身</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>我们需要您打开保存照片权限用于保存照片</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>我们需要您打开相册权限用于查看并选择照片</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>App需要您的同意,才能访问提醒事项</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -41,5 +69,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

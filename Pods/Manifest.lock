@@ -2,6 +2,7 @@ PODS:
   - Alamofire (4.6.0)
   - DZNEmptyDataSet (1.8.1)
   - FDFullscreenPopGesture (1.1)
+  - GRStarsView (0.1.0)
   - HandyJSON (4.0.0-beta.1)
   - IQKeyboardManagerSwift (5.0.7)
   - Kingfisher (4.6.2)
@@ -19,6 +20,7 @@ DEPENDENCIES:
   - Alamofire
   - DZNEmptyDataSet
   - FDFullscreenPopGesture
+  - GRStarsView
   - HandyJSON (~> 4.0.0-beta.1)
   - IQKeyboardManagerSwift
   - Kingfisher
@@ -32,6 +34,7 @@ SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  GRStarsView: a9cf0b315dd4ab5f547a2004943eef86e935a792
   HandyJSON: 428bb18e2c34c2a77361accebf90cf64e4f74118
   IQKeyboardManagerSwift: 30fb3a61de1af53a95e02b80fb54ed0a19d5ede5
   Kingfisher: 55b9c395bf8d3949676ad3861111923990ab68cf
@@ -42,6 +45,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   XLPhotoBrowser+CoderXL: 2bf4036e2af4611b24bde1681e24c64ed01fbe98
 
-PODFILE CHECKSUM: b8e49700eb01748517dc5d3d8a927bb9428ab7ae
+PODFILE CHECKSUM: f27c453e347c2ade040619e8c0985de6ca040ede
 
 COCOAPODS: 1.4.0
