@@ -76,6 +76,7 @@
 		189D7E3C2056432C000AE2C8 /* ELMMenuViewOneScrollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D7E3B2056432C000AE2C8 /* ELMMenuViewOneScrollCell.swift */; };
 		18A1AC302057959A005B1458 /* ELMMenuBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A1AC2F2057959A005B1458 /* ELMMenuBackView.swift */; };
 		18A1AC3220579636005B1458 /* ELMMenuBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A1AC3120579636005B1458 /* ELMMenuBackView.xib */; };
+		18A1AC382057C4A6005B1458 /* RatingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A1AC372057C4A6005B1458 /* RatingBar.swift */; };
 		18D8301D2048FFA1008E5A44 /* WBMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D8301C2048FFA1008E5A44 /* WBMainTableViewCell.xib */; };
 		EA6EE33A4B4F6D637FC9B685 /* Pods_BigDemoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DBD0EB0DD1A87F6937D7C67 /* Pods_BigDemoSwift.framework */; };
 /* End PBXBuildFile section */
@@ -155,6 +156,7 @@
 		189D7E3B2056432C000AE2C8 /* ELMMenuViewOneScrollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ELMMenuViewOneScrollCell.swift; sourceTree = "<group>"; };
 		18A1AC2F2057959A005B1458 /* ELMMenuBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ELMMenuBackView.swift; sourceTree = "<group>"; };
 		18A1AC3120579636005B1458 /* ELMMenuBackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ELMMenuBackView.xib; sourceTree = "<group>"; };
+		18A1AC372057C4A6005B1458 /* RatingBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingBar.swift; sourceTree = "<group>"; };
 		18D8301C2048FFA1008E5A44 /* WBMainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WBMainTableViewCell.xib; sourceTree = "<group>"; };
 		272C4BF05F750927A2BB3F04 /* Pods-BigDemoSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BigDemoSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BigDemoSwift/Pods-BigDemoSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		4E8F3ACB9C6DC5EB658410D6 /* Pods-BigDemoSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BigDemoSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-BigDemoSwift/Pods-BigDemoSwift.release.xcconfig"; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 		1803932E203FF70D00A12674 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				18A1AC372057C4A6005B1458 /* RatingBar.swift */,
 				18039331203FF74500A12674 /* XXLinkLabel.h */,
 				18039330203FF74500A12674 /* XXLinkLabel.m */,
 			);
@@ -555,7 +558,6 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/FDFullscreenPopGesture/FDFullscreenPopGesture.framework",
-				"${BUILT_PRODUCTS_DIR}/GRStarsView/GRStarsView.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -571,7 +573,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FDFullscreenPopGesture.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRStarsView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -639,6 +640,7 @@
 				1803933D20400AEC00A12674 /* WBMainTableViewCell.swift in Sources */,
 				188C690320428CF600ED544E /* WBMainContentModel.swift in Sources */,
 				18039332203FF74500A12674 /* XXLinkLabel.m in Sources */,
+				18A1AC382057C4A6005B1458 /* RatingBar.swift in Sources */,
 				1803931B203FE3A100A12674 /* ViewController.swift in Sources */,
 				1875B7302047E50400B5A5AA /* WBNineImageView.swift in Sources */,
 				18039319203FE3A100A12674 /* AppDelegate.swift in Sources */,

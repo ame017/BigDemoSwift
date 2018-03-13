@@ -76,7 +76,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tQD-am-uLF" userLabel="backView" customClass="ELMMenuBackView" customModule="BigDemoSwift" customModuleProvider="target">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="503" translatesAutoresizingMaskIntoConstraints="NO" id="tQD-am-uLF" userLabel="backView" customClass="ELMMenuBackView" customModule="BigDemoSwift" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="164" width="375" height="503"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -225,7 +225,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="tQD-am-uLF" firstAttribute="trailing" secondItem="9Ah-2b-cwz" secondAttribute="trailing" id="2qO-ek-Kvf"/>
-                            <constraint firstItem="tQD-am-uLF" firstAttribute="top" secondItem="zxe-m9-npY" secondAttribute="bottom" id="8KG-lI-DIb"/>
                             <constraint firstItem="9Ah-2b-cwz" firstAttribute="trailing" secondItem="afJ-57-Kbq" secondAttribute="trailing" id="DkJ-wt-2UV"/>
                             <constraint firstItem="6jC-vD-JIg" firstAttribute="top" secondItem="afJ-57-Kbq" secondAttribute="top" id="IGS-fh-tvj"/>
                             <constraint firstItem="9Ah-2b-cwz" firstAttribute="trailing" secondItem="zxe-m9-npY" secondAttribute="trailing" id="KMy-Ey-ARF"/>
@@ -246,7 +245,6 @@
                     <navigationItem key="navigationItem" id="cri-42-0ml"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="backTopHeight" destination="8KG-lI-DIb" id="9IY-19-48M"/>
                         <outlet property="backView" destination="tQD-am-uLF" id="445-Il-cXY"/>
                         <outlet property="goBackButtonView" destination="6jC-vD-JIg" id="Fhm-gv-CLt"/>
                         <outlet property="headIconImageView" destination="z5l-F3-gyL" id="1zG-2K-ac1"/>
@@ -259,6 +257,7 @@
                         <outlet property="tableTopHeight" destination="eZF-QE-nSE" id="FBd-Q2-oV4"/>
                         <outlet property="tableview" destination="afJ-57-Kbq" id="Ex7-hg-Plj"/>
                         <outlet property="topBackImageView" destination="ZkC-xJ-5mb" id="Cb6-al-PnI"/>
+                        <outlet property="topContentView" destination="zxe-m9-npY" id="EW5-C7-8da"/>
                         <outlet property="topHeight" destination="lSh-Qy-epL" id="auA-9T-Wjt"/>
                     </connections>
                 </viewController>

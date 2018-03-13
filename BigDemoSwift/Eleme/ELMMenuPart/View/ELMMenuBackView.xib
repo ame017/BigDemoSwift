@@ -31,7 +31,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yez-qD-710" userLabel="smallContent">
-                    <rect key="frame" x="59" y="85.5" width="257" height="20"/>
+                    <rect key="frame" x="59" y="80.5" width="257" height="20"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="月售" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2BU-hZ-XVk">
                             <rect key="frame" x="83" y="2" width="27" height="16"/>
@@ -55,19 +55,35 @@
                                 <constraint firstAttribute="width" constant="1" id="zzi-VK-9X9"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIq-yB-I1K">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIq-yB-I1K">
                             <rect key="frame" x="55" y="2" width="19" height="16"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vgF-aj-xIG" customClass="GRStarsView">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vgF-aj-xIG" customClass="RatingBar" customModule="BigDemoSwift" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="50" height="20"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="fLK-NZ-WY3"/>
                                 <constraint firstAttribute="width" constant="50" id="yMa-oq-zne"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="ratingMax">
+                                    <real key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                    <real key="value" value="4.7000000000000002"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="canAnimation" value="NO"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isIndicator" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="numStars">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="image" keyPath="imageLight" value="ic_ratingbar_star_light"/>
+                                <userDefinedRuntimeAttribute type="image" keyPath="imageDark" value="ic_ratingbar_star_dark"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="incomplete" value="YES"/>
+                            </userDefinedRuntimeAttributes>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3611" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCf-r1-tOH">
                             <rect key="frame" x="110" y="2" width="29" height="16"/>
@@ -75,7 +91,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="蜂鸟转送约" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4T4-Ie-eT6">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="蜂鸟专送约" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4T4-Ie-eT6">
                             <rect key="frame" x="148" y="2" width="67" height="16"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <nil key="textColor"/>
@@ -122,7 +138,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="yez-qD-710" firstAttribute="top" secondItem="3Cl-jQ-Pdq" secondAttribute="bottom" constant="20" id="7Cf-AM-cYs"/>
+                <constraint firstItem="yez-qD-710" firstAttribute="top" secondItem="3Cl-jQ-Pdq" secondAttribute="bottom" constant="15" id="7Cf-AM-cYs"/>
                 <constraint firstItem="VIq-yB-I1K" firstAttribute="centerY" secondItem="yez-qD-710" secondAttribute="centerY" id="IWK-pW-LP1"/>
                 <constraint firstItem="4T4-Ie-eT6" firstAttribute="leading" secondItem="CIU-yW-a3n" secondAttribute="trailing" constant="4" id="amC-5z-iUq"/>
                 <constraint firstItem="yez-qD-710" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="fak-AC-IGK"/>
@@ -139,4 +155,8 @@
             <point key="canvasLocation" x="33.5" y="-387"/>
         </view>
     </objects>
+    <resources>
+        <image name="ic_ratingbar_star_dark" width="14" height="13"/>
+        <image name="ic_ratingbar_star_light" width="14" height="13"/>
+    </resources>
 </document>

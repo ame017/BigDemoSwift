@@ -8,6 +8,7 @@
 
 import UIKit
 import FDFullscreenPopGesture
+import SnapKit
 
 class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableViewDelegate, UITableViewDataSource {
     
@@ -20,7 +21,7 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
     var tableViewUpTop:CGFloat = 100 + CGFloat(kStatusBarAndNavigationBarHeight) + 150
     let tableviewDownTop:CGFloat = SCREEN_HEIGHT - 80
     
-    let goBackButtonStartShowHeight:CGFloat = (100 + CGFloat(kStatusBarAndNavigationBarHeight) + 150) + (SCREEN_HEIGHT - 80 - (100 + CGFloat(kStatusBarAndNavigationBarHeight) + 150))/2.0
+    var goBackButtonStartShowHeight:CGFloat = (100 + CGFloat(kStatusBarAndNavigationBarHeight) + 150) + (SCREEN_HEIGHT - 80 - (100 + CGFloat(kStatusBarAndNavigationBarHeight) + 150))/2.0
     
     let searchButtonStartShowHeight:CGFloat = CGFloat(kStatusBarAndNavigationBarHeight+50)
     let searchButtonOverShowHeight:CGFloat = CGFloat(kStatusBarAndNavigationBarHeight)
@@ -34,14 +35,19 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
     @IBOutlet weak var pinButton: UIButton!
     @IBOutlet weak var moreButton: UIButton!
     
+    @IBOutlet weak var topContentView: UIView!
+    
     @IBOutlet weak var backView: ELMMenuBackView!
     
     
-    @IBOutlet weak var backTopHeight: NSLayoutConstraint!
     @IBOutlet weak var topHeight: NSLayoutConstraint!
     @IBOutlet weak var tableTopHeight: NSLayoutConstraint!
     @IBOutlet weak var headWidth: NSLayoutConstraint!
     @IBOutlet weak var headOffset: NSLayoutConstraint!
+    
+    private var tableViewTopDistance:Constraint?
+    private var backTopHeight:Constraint?
+    
     //MARK: - lifeCircle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +55,17 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
         self.fd_prefersNavigationBarHidden = true
         self.goBackButtonView.alpha = 0
         self.backView.content.addTarget(self, action: #selector(self.backViewClick(_:)), for: UIControlEvents.touchUpInside)
+        
+        
+        //代码创建两个约束
+        self.backView.snp.makeConstraints { (make) in
+            backTopHeight = make.top.equalTo(topContentView.snp.bottom).constraint
+        }
+        self.tableview.snp.makeConstraints({ (make) in
+            tableViewTopDistance = make.top.equalTo(self.backView).offset(tableViewUpTop-topViewDownHeight).constraint
+        })
+        self.tableViewTopDistance?.deactivate()
+        self.backTopHeight?.activate()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -106,6 +123,13 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
                         topHeight.constant -= contentOffset
                     }
                 }
+                self.backTopHeight?.deactivate()
+                self.tableViewTopDistance?.activate()
+//                if tableViewTopDistance == nil{
+//                    self.tableview.snp.makeConstraints({ (make) in
+//                        tableViewTopDistance = make.top.equalTo(self.backView).offset(tableViewUpTop-topViewDownHeight).constraint
+//                    })
+//                }
             }
             //如果table的上距离小于最小值 赋值最小值
             if tableTopHeight.constant <= topViewUpHeight{
@@ -119,7 +143,7 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
 //                    backTopHeight.constant -= contentOffset
 //                }
             }
-        }else{
+        }else if contentOffset < 0{
             //下拉
             if tableTopHeight.constant >= tableViewUpTop-(topViewDownHeight-topViewUpHeight){
                 //如果topview的高度大于最大值 赋值最大值
@@ -138,14 +162,16 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
                 //否则下拉
                 scrollView.contentOffset = CGPoint.init(x: 0, y: 0)
                 tableTopHeight.constant -= contentOffset
-//                //top没到底
-//                if topHeight.constant > topViewDownHeight{
-//                    backTopHeight.constant -= contentOffset
-//                }
-//                //如果top到底
-//                if topHeight.constant >= topViewDownHeight{
-//                    backTopHeight.constant = 0
-//                }
+                if tableTopHeight.constant > tableViewUpTop {
+                    self.tableViewTopDistance?.deactivate()
+                    self.backTopHeight?.activate()
+                    
+//                    if backTopHeight == nil{
+//                        self.backView.snp.makeConstraints { (make) in
+//                            backTopHeight = make.top.equalTo(topContentView.snp.bottom).constraint
+//                        }
+//                    }
+                }
             }
         }
         //渐变向上按钮

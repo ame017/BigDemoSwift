@@ -11,7 +11,7 @@ import UIKit
 class ELMMenuBackView: UIControl {
     @IBOutlet var content: UIControl!
     
-    @IBOutlet weak var starsViewSmall: GRStarsView!
+    @IBOutlet weak var starsViewSmall: RatingBar!
     @IBOutlet weak var startLabelSmall: UILabel!
     @IBOutlet weak var sealLabelSmall: UILabel!
     @IBOutlet weak var timeLabelSmall: UILabel!
@@ -19,9 +19,6 @@ class ELMMenuBackView: UIControl {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initFromXIB()
-        starsViewSmall.score = 5.0
-        starsViewSmall.allowSelect = false
-        starsViewSmall.allowDecimal = true
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
