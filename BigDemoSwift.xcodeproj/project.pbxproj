@@ -77,6 +77,7 @@
 		18A1AC302057959A005B1458 /* ELMMenuBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A1AC2F2057959A005B1458 /* ELMMenuBackView.swift */; };
 		18A1AC3220579636005B1458 /* ELMMenuBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A1AC3120579636005B1458 /* ELMMenuBackView.xib */; };
 		18A1AC382057C4A6005B1458 /* RatingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A1AC372057C4A6005B1458 /* RatingBar.swift */; };
+		18BA6E5D2058FF4900E8781F /* ELMMenuCharacteristicsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA6E5C2058FF4900E8781F /* ELMMenuCharacteristicsModel.swift */; };
 		18D553052058D03700F675A5 /* ELMCouponView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D553042058D03700F675A5 /* ELMCouponView.swift */; };
 		18D553072058D05200F675A5 /* ELMCouponView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D553062058D05200F675A5 /* ELMCouponView.xib */; };
 		18D553092058F32000F675A5 /* ELMPreferentialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D553082058F32000F675A5 /* ELMPreferentialView.swift */; };
@@ -164,6 +165,7 @@
 		18A1AC2F2057959A005B1458 /* ELMMenuBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ELMMenuBackView.swift; sourceTree = "<group>"; };
 		18A1AC3120579636005B1458 /* ELMMenuBackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ELMMenuBackView.xib; sourceTree = "<group>"; };
 		18A1AC372057C4A6005B1458 /* RatingBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingBar.swift; sourceTree = "<group>"; };
+		18BA6E5C2058FF4900E8781F /* ELMMenuCharacteristicsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ELMMenuCharacteristicsModel.swift; sourceTree = "<group>"; };
 		18D553042058D03700F675A5 /* ELMCouponView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ELMCouponView.swift; sourceTree = "<group>"; };
 		18D553062058D05200F675A5 /* ELMCouponView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ELMCouponView.xib; sourceTree = "<group>"; };
 		18D553082058F32000F675A5 /* ELMPreferentialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ELMPreferentialView.swift; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				18D5530C2058F77D00F675A5 /* ELMMenuBaseModel.swift */,
+				18BA6E5C2058FF4900E8781F /* ELMMenuCharacteristicsModel.swift */,
 				18D5530E2058F8A600F675A5 /* ELMMenuCouponModel.swift */,
 				18D553102058F9CD00F675A5 /* ELMMenuPreferentialModel.swift */,
 			);
@@ -663,6 +666,7 @@
 				1892B7D5205128850049192D /* ELMMenuViewController.swift in Sources */,
 				189D7E3C2056432C000AE2C8 /* ELMMenuViewOneScrollCell.swift in Sources */,
 				1803933D20400AEC00A12674 /* WBMainTableViewCell.swift in Sources */,
+				18BA6E5D2058FF4900E8781F /* ELMMenuCharacteristicsModel.swift in Sources */,
 				188C690320428CF600ED544E /* WBMainContentModel.swift in Sources */,
 				18039332203FF74500A12674 /* XXLinkLabel.m in Sources */,
 				18D553052058D03700F675A5 /* ELMCouponView.swift in Sources */,

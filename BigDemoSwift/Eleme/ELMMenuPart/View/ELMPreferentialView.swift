@@ -13,6 +13,12 @@ class ELMPreferentialView: UIView {
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     
+    var model:ELMMenuPreferentialModel?{
+        didSet{
+            
+        }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initFromXIB()

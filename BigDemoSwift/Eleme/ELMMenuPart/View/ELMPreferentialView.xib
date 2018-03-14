@@ -41,7 +41,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="满5减6，满100减20。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1M1-9V-IgZ">
-                    <rect key="frame" x="48" y="0.0" width="153.5" height="18"/>
+                    <rect key="frame" x="48" y="0.0" width="153.5" height="25"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -51,6 +51,7 @@
             <constraints>
                 <constraint firstItem="tbT-Rt-n7p" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="1cJ-P8-9Fw"/>
                 <constraint firstItem="1M1-9V-IgZ" firstAttribute="top" secondItem="tbT-Rt-n7p" secondAttribute="top" id="4Vn-6v-noO"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="1M1-9V-IgZ" secondAttribute="bottom" id="LVJ-Wp-a8e"/>
                 <constraint firstItem="1M1-9V-IgZ" firstAttribute="leading" secondItem="tbT-Rt-n7p" secondAttribute="trailing" constant="8" id="Mb5-YX-Eha"/>
                 <constraint firstItem="tbT-Rt-n7p" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="2" id="Rhr-0T-uoE"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1M1-9V-IgZ" secondAttribute="trailing" constant="1" id="ZCN-jM-K5H"/>

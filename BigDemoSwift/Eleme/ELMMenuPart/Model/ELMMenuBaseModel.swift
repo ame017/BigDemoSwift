@@ -18,4 +18,7 @@ class ELMMenuBaseModel: NSObject {
     var time = "约0分钟"
     var distance = 0
     var announcement = "请提前下单，避免高峰时期耽误您用餐。"
+    var characteristicsArray = Array<ELMMenuCharacteristicsModel>()
+    var couponArray = Array<ELMMenuCouponModel>()
+    var preferentialArray = Array<ELMMenuPreferentialModel>()
 }

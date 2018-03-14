@@ -8,11 +8,11 @@
 
 import UIKit
 
-enum ELMMenuPreferentialLineModelType {
+enum ELMMenuPreferentialModelType {
     case full,mumbership,firstOrder,invoice
 }
 
 class ELMMenuPreferentialModel: NSObject {
-    var type = ELMMenuPreferentialLineModelType.full
+    var type = ELMMenuPreferentialModelType.full
     var content = "满减优惠"
 }

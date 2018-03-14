@@ -48,6 +48,9 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
     private var tableViewTopDistance:Constraint?
     private var backTopHeight:Constraint?
     
+    
+    var model = ELMMenuBaseModel.init()
+    
     //MARK: - lifeCircle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +69,20 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
         })
         self.tableViewTopDistance?.deactivate()
         self.backTopHeight?.activate()
+        
+        model.name = "小白兔便当"
+        model.score = 4.6
+        model.seal = 193
+        model.distance = 1102
+        let cModel0 = ELMMenuCharacteristicsModel.init()
+        model.characteristicsArray.append(cModel0)
+        let coupon0 = ELMMenuCouponModel.init()
+        model.couponArray.append(coupon0)
+        let pModel0 = ELMMenuPreferentialModel.init()
+        let pModel1 = ELMMenuPreferentialModel.init()
+        let pModel2 = ELMMenuPreferentialModel.init()
+        model.preferentialArray = [pModel0,pModel1,pModel2]
+        self.backView.model = model
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
