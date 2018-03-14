@@ -9,23 +9,19 @@
 import UIKit
 
 class ELMPreferentialView: UIView {
-    @IBOutlet var content: UIControl!
-    @IBOutlet weak var smallContent: UIView!
-    @IBOutlet weak var smallNumber: UILabel!
-    @IBOutlet weak var smallDesc: UILabel!
-    
-    @IBOutlet weak var bigContent: UIView!
-    @IBOutlet weak var bigNumber: UILabel!
-    @IBOutlet weak var bigDesc: UILabel!
-    @IBOutlet weak var bigSubContent: UILabel!
+    @IBOutlet var content: UIView!
+    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initFromXIB()
+        self.layer.borderColor = self.titleLabel.textColor.cgColor
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
         initFromXIB()
+        self.layer.borderColor = self.titleLabel.textColor.cgColor
     }
     
     func initFromXIB() {
@@ -36,4 +32,12 @@ class ELMPreferentialView: UIView {
         content.frame = bounds
         self.addSubview(content)
     }
+    /*
+    // Only override draw() if you perform custom drawing.
+    // An empty implementation adversely affects performance during animation.
+    override func draw(_ rect: CGRect) {
+        // Drawing code
+    }
+    */
+
 }

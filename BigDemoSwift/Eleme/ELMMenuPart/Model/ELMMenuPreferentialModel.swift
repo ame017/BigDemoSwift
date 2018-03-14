@@ -1,5 +1,5 @@
 //
-//  ELMMenuPreferentialLineModel.swift
+//  ELMMenuPreferentialModel.swift
 //  BigDemoSwift
 //
 //  Created by ame on 2018/3/14.
@@ -12,7 +12,7 @@ enum ELMMenuPreferentialLineModelType {
     case full,mumbership,firstOrder,invoice
 }
 
-class ELMMenuPreferentialLineModel: NSObject {
+class ELMMenuPreferentialModel: NSObject {
     var type = ELMMenuPreferentialLineModelType.full
     var content = "满减优惠"
 }
