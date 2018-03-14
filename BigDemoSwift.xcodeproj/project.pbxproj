@@ -77,6 +77,13 @@
 		18A1AC302057959A005B1458 /* ELMMenuBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A1AC2F2057959A005B1458 /* ELMMenuBackView.swift */; };
 		18A1AC3220579636005B1458 /* ELMMenuBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A1AC3120579636005B1458 /* ELMMenuBackView.xib */; };
 		18A1AC382057C4A6005B1458 /* RatingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A1AC372057C4A6005B1458 /* RatingBar.swift */; };
+		18D553052058D03700F675A5 /* ELMPreferentialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D553042058D03700F675A5 /* ELMPreferentialView.swift */; };
+		18D553072058D05200F675A5 /* ELMPreferentialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D553062058D05200F675A5 /* ELMPreferentialView.xib */; };
+		18D553092058F32000F675A5 /* ELMPreferentialLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D553082058F32000F675A5 /* ELMPreferentialLineView.swift */; };
+		18D5530B2058F34400F675A5 /* ELMPreferentialLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D5530A2058F34400F675A5 /* ELMPreferentialLineView.xib */; };
+		18D5530D2058F77D00F675A5 /* ELMMenuBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D5530C2058F77D00F675A5 /* ELMMenuBaseModel.swift */; };
+		18D5530F2058F8A600F675A5 /* ELMMenuCouponModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D5530E2058F8A600F675A5 /* ELMMenuCouponModel.swift */; };
+		18D553112058F9CD00F675A5 /* ELMMenuPreferentialLineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D553102058F9CD00F675A5 /* ELMMenuPreferentialLineModel.swift */; };
 		18D8301D2048FFA1008E5A44 /* WBMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D8301C2048FFA1008E5A44 /* WBMainTableViewCell.xib */; };
 		EA6EE33A4B4F6D637FC9B685 /* Pods_BigDemoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DBD0EB0DD1A87F6937D7C67 /* Pods_BigDemoSwift.framework */; };
 /* End PBXBuildFile section */
@@ -157,6 +164,13 @@
 		18A1AC2F2057959A005B1458 /* ELMMenuBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ELMMenuBackView.swift; sourceTree = "<group>"; };
 		18A1AC3120579636005B1458 /* ELMMenuBackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ELMMenuBackView.xib; sourceTree = "<group>"; };
 		18A1AC372057C4A6005B1458 /* RatingBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingBar.swift; sourceTree = "<group>"; };
+		18D553042058D03700F675A5 /* ELMPreferentialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ELMPreferentialView.swift; sourceTree = "<group>"; };
+		18D553062058D05200F675A5 /* ELMPreferentialView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ELMPreferentialView.xib; sourceTree = "<group>"; };
+		18D553082058F32000F675A5 /* ELMPreferentialLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ELMPreferentialLineView.swift; sourceTree = "<group>"; };
+		18D5530A2058F34400F675A5 /* ELMPreferentialLineView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ELMPreferentialLineView.xib; sourceTree = "<group>"; };
+		18D5530C2058F77D00F675A5 /* ELMMenuBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ELMMenuBaseModel.swift; sourceTree = "<group>"; };
+		18D5530E2058F8A600F675A5 /* ELMMenuCouponModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ELMMenuCouponModel.swift; sourceTree = "<group>"; };
+		18D553102058F9CD00F675A5 /* ELMMenuPreferentialLineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ELMMenuPreferentialLineModel.swift; sourceTree = "<group>"; };
 		18D8301C2048FFA1008E5A44 /* WBMainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WBMainTableViewCell.xib; sourceTree = "<group>"; };
 		272C4BF05F750927A2BB3F04 /* Pods-BigDemoSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BigDemoSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BigDemoSwift/Pods-BigDemoSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		4E8F3ACB9C6DC5EB658410D6 /* Pods-BigDemoSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BigDemoSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-BigDemoSwift/Pods-BigDemoSwift.release.xcconfig"; sourceTree = "<group>"; };
@@ -387,6 +401,9 @@
 		1892B7CE205128140049192D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				18D5530C2058F77D00F675A5 /* ELMMenuBaseModel.swift */,
+				18D5530E2058F8A600F675A5 /* ELMMenuCouponModel.swift */,
+				18D553102058F9CD00F675A5 /* ELMMenuPreferentialLineModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -397,6 +414,10 @@
 				189D7E3B2056432C000AE2C8 /* ELMMenuViewOneScrollCell.swift */,
 				18A1AC2F2057959A005B1458 /* ELMMenuBackView.swift */,
 				18A1AC3120579636005B1458 /* ELMMenuBackView.xib */,
+				18D553042058D03700F675A5 /* ELMPreferentialView.swift */,
+				18D553062058D05200F675A5 /* ELMPreferentialView.xib */,
+				18D553082058F32000F675A5 /* ELMPreferentialLineView.swift */,
+				18D5530A2058F34400F675A5 /* ELMPreferentialLineView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -513,6 +534,7 @@
 				188C68F72042849C00ED544E /* headIcon16.jpg in Resources */,
 				1875B7322047E51D00B5A5AA /* WBNineImageView.xib in Resources */,
 				188C68E92042849C00ED544E /* headIcon27.jpg in Resources */,
+				18D553072058D05200F675A5 /* ELMPreferentialView.xib in Resources */,
 				188C68F22042849C00ED544E /* headIcon10.jpg in Resources */,
 				1892B7C820511FA20049192D /* Eleme.storyboard in Resources */,
 				188C68E32042849C00ED544E /* headIcon28.jpg in Resources */,
@@ -525,6 +547,7 @@
 				188C68F82042849C00ED544E /* headIcon21.jpg in Resources */,
 				188C68F52042849C00ED544E /* headIcon13.jpg in Resources */,
 				186D11F62044E34E009F3242 /* WBForwardingView.xib in Resources */,
+				18D5530B2058F34400F675A5 /* ELMPreferentialLineView.xib in Resources */,
 				188C68E82042849C00ED544E /* headIcon14.jpg in Resources */,
 				188C68D72042849C00ED544E /* headIcon12.jpg in Resources */,
 				188C68ED2042849C00ED544E /* headIcon35.jpg in Resources */,
@@ -628,18 +651,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D5530F2058F8A600F675A5 /* ELMMenuCouponModel.swift in Sources */,
 				186D11F42044E342009F3242 /* WBForwardingView.swift in Sources */,
 				188C68FF2042850700ED544E /* WBMainContentView.swift in Sources */,
 				18039338204006B200A12674 /* WBBaseViewController.swift in Sources */,
 				188C68492042396900ED544E /* Header.swift in Sources */,
 				1892B7D3205128640049192D /* ELMBaseViewController.swift in Sources */,
 				1803933F20400B8900A12674 /* WBMainHeaderView.swift in Sources */,
+				18D553092058F32000F675A5 /* ELMPreferentialLineView.swift in Sources */,
 				1803934420400CA100A12674 /* WBMainHeaderModel.swift in Sources */,
 				1892B7D5205128850049192D /* ELMMenuViewController.swift in Sources */,
 				189D7E3C2056432C000AE2C8 /* ELMMenuViewOneScrollCell.swift in Sources */,
 				1803933D20400AEC00A12674 /* WBMainTableViewCell.swift in Sources */,
 				188C690320428CF600ED544E /* WBMainContentModel.swift in Sources */,
 				18039332203FF74500A12674 /* XXLinkLabel.m in Sources */,
+				18D553052058D03700F675A5 /* ELMPreferentialView.swift in Sources */,
+				18D553112058F9CD00F675A5 /* ELMMenuPreferentialLineModel.swift in Sources */,
+				18D5530D2058F77D00F675A5 /* ELMMenuBaseModel.swift in Sources */,
 				18A1AC382057C4A6005B1458 /* RatingBar.swift in Sources */,
 				1803931B203FE3A100A12674 /* ViewController.swift in Sources */,
 				1875B7302047E50400B5A5AA /* WBNineImageView.swift in Sources */,

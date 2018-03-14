@@ -11,10 +11,23 @@ import UIKit
 class ELMMenuBackView: UIControl {
     @IBOutlet var content: UIControl!
     
+    @IBOutlet weak var smallContent: UIView!
     @IBOutlet weak var starsViewSmall: RatingBar!
     @IBOutlet weak var startLabelSmall: UILabel!
     @IBOutlet weak var sealLabelSmall: UILabel!
     @IBOutlet weak var timeLabelSmall: UILabel!
+    @IBOutlet weak var wayLabel: UILabel!
+    
+    @IBOutlet weak var bigContent: UIView!
+    @IBOutlet weak var startsViewBig: RatingBar!
+    @IBOutlet weak var scoreViewBig: UILabel!
+    @IBOutlet weak var sealLabelBig: UILabel!
+    @IBOutlet weak var timeLabelBig: UILabel!
+    @IBOutlet weak var wayLabelBig: UILabel!
+    @IBOutlet weak var distanceLabelBig: UILabel!
+    
+    @IBOutlet weak var preferentialView: UIView!
+    @IBOutlet weak var announcementView: UIView!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
