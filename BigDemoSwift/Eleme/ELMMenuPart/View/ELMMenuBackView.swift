@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ELMMenuBackView: UIControl {
     @IBOutlet var content: UIControl!
@@ -32,11 +33,16 @@ class ELMMenuBackView: UIControl {
     @IBOutlet weak var announcementLabel: UILabel!
     
     
+    let preferentialsViewOriginLeft:CGFloat = 30
+    let preferentialNumlabelOriginRight:CGFloat = -41
+    
+    
     var downImageView = UIImageView.init()
     
     var characteristicsView = UIStackView.init()
     var couponView = UIStackView.init()
     var preferentialsView = UIStackView.init()
+    var preferentialNumLabel = UILabel.init()
     
     var model:ELMMenuBaseModel?{
         didSet{
@@ -78,6 +84,7 @@ class ELMMenuBackView: UIControl {
             attrAnnouncement.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSRange.init(location: 0, length: (model?.announcement.count)!))
             attrAnnouncement.addAttribute(NSAttributedStringKey.foregroundColor, value:UIColor.darkGray , range: NSRange.init(location: 0, length: (model?.announcement.count)!))
             announcementLabel.attributedText = attrAnnouncement
+            announcementLabel.lineBreakMode = .byTruncatingTail
             
             if (model?.characteristicsArray.count)! > 0{
                 characteristicsView.spacing = 5
@@ -95,6 +102,7 @@ class ELMMenuBackView: UIControl {
                             label.text = "准时达"
                             label.font = UIFont.systemFont(ofSize: 10)
                             label.textColor = AMEColor(r: 68, g: 155, b: 235)
+                            label.textAlignment = .center
                             label.clipsToBounds = true
                             label.layer.cornerRadius = 3.0
                             label.layer.borderWidth = 1.0
@@ -103,6 +111,7 @@ class ELMMenuBackView: UIControl {
                             label.text = "拒单赔"
                             label.font = UIFont.systemFont(ofSize: 10)
                             label.textColor = UIColor.darkGray
+                            label.textAlignment = .center
                             label.clipsToBounds = true
                             label.layer.cornerRadius = 3.0
                             label.layer.borderWidth = 1.0
@@ -124,6 +133,9 @@ class ELMMenuBackView: UIControl {
                     make.top.equalTo(announcementLabel.snp.bottom).offset(12)
                     make.centerX.equalToSuperview()
                 })
+                preferentialView.snp.makeConstraints({ (make) in
+                    make.bottom.equalTo(couponView.snp.top).offset(-15)
+                })
                 for i in 0 ..< (model?.couponArray.count)! {
                     let coupon = ELMCouponView.init(frame: CGRect.init())
                     coupon.model = model?.couponArray[i]
@@ -136,11 +148,11 @@ class ELMMenuBackView: UIControl {
             }
             
             if (model?.preferentialArray.count)! > 0 {
-                let label = UILabel.init()
-                label.font = UIFont.systemFont(ofSize: 9)
-                label.textColor = UIColor.gray
-                label.text = String((model?.preferentialArray.count)!).appending("个优惠")
-                self.content.addSubview(label)
+                preferentialNumLabel = UILabel.init()
+                preferentialNumLabel.font = UIFont.systemFont(ofSize: 11)
+                preferentialNumLabel.textColor = UIColor.gray
+                preferentialNumLabel.text = String((model?.preferentialArray.count)!).appending("个优惠")
+                self.content.addSubview(preferentialNumLabel)
                 
                 downImageView.image = #imageLiteral(resourceName: "shopping_activity_count_arrow_6x3_")
                 self.content.addSubview(downImageView)
@@ -154,11 +166,11 @@ class ELMMenuBackView: UIControl {
                     make.right.equalTo(-30)
                     make.width.equalTo(6)
                     make.height.equalTo(3)
-                    make.centerY.equalTo(label)
+                    make.centerY.equalTo(preferentialNumLabel)
                 })
                 
-                label.snp.makeConstraints({ (make) in
-                    make.right.equalTo(-41)
+                preferentialNumLabel.snp.makeConstraints({ (make) in
+                    make.right.equalTo(preferentialNumlabelOriginRight)
                     make.top.equalTo(preferentialsView)
                 })
                 
@@ -168,9 +180,14 @@ class ELMMenuBackView: UIControl {
                     }else{
                         make.top.equalTo(announcementLabel.snp.bottom).offset(10)
                     }
-                    make.left.equalTo(30)
-                    make.right.equalTo(label.snp.left).offset(-10)
+                    make.left.equalTo(preferentialsViewOriginLeft)
+                    make.width.equalTo(SCREEN_WIDTH-30-30-41-40)
                 })
+                if model?.couponArray.count == 0{
+                    preferentialView.snp.makeConstraints({ (make) in
+                        make.bottom.equalTo(preferentialsView.snp.top).offset(-15)
+                    })
+                }
                 
                 for i in 0 ..< (model?.preferentialArray.count)! {
                     let preferential = ELMPreferentialView.init(frame: CGRect.init())
@@ -178,7 +195,7 @@ class ELMMenuBackView: UIControl {
                     self.preferentialsView.addArrangedSubview(preferential)
                 }
             }
-            
+
         }
     }
     

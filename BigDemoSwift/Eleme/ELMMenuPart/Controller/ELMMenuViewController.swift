@@ -26,7 +26,8 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
     let searchButtonStartShowHeight:CGFloat = CGFloat(kStatusBarAndNavigationBarHeight+50)
     let searchButtonOverShowHeight:CGFloat = CGFloat(kStatusBarAndNavigationBarHeight)
     
-    var isLayout = false
+    private var isLayout = false
+    private var preferentialDownHeight:CGFloat = 0.0
     
     @IBOutlet weak var goBackButtonView: UIView!
     @IBOutlet weak var tableview: UITableView!
@@ -51,6 +52,8 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
     private var backTopHeight:Constraint?
     
     
+    
+    
     var model = ELMMenuBaseModel.init()
     
     //MARK: - lifeCircle
@@ -60,29 +63,31 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
         self.fd_prefersNavigationBarHidden = true
         self.goBackButtonView.alpha = 0
         self.backView.content.addTarget(self, action: #selector(self.backViewClick(_:)), for: UIControlEvents.touchUpInside)
-        
-        
         //代码创建两个约束
         self.backView.snp.makeConstraints { (make) in
             backTopHeight = make.top.equalTo(topContentView.snp.bottom).constraint
         }
-        self.tableview.snp.makeConstraints({ (make) in
-            tableViewTopDistance = make.top.equalTo(self.backView).offset(tableViewUpTop-topViewDownHeight).constraint
-        })
-        self.tableViewTopDistance?.deactivate()
         self.backTopHeight?.activate()
         
         model.name = "小白兔便当"
-        model.score = 4.6
-        model.seal = 193
-        model.distance = 1102
+        model.score = 5.0
+        model.seal = 315
+        model.distance = 3150
+        model.time = "约25分钟"
+        model.way = "蜂鸟专送"
+        model.announcement = "本店经营各种便当，好吃不贵，全是新鲜的小白兔，长颈鹿负责亲自烹调，高峰时期为了避免拥堵，请您提前订餐。"
         let cModel0 = ELMMenuCharacteristicsModel.init()
         model.characteristicsArray.append(cModel0)
         let coupon0 = ELMMenuCouponModel.init()
         model.couponArray.append(coupon0)
         let pModel0 = ELMMenuPreferentialModel.init()
+        pModel0.content = "满6减5，满30减22，满50减35，满100减70."
         let pModel1 = ELMMenuPreferentialModel.init()
+        pModel1.type = .firstOrder
+        pModel1.content = "新人首单减16元。"
         let pModel2 = ELMMenuPreferentialModel.init()
+        pModel2.type = .mumbership
+        pModel2.content = "会员领6元无门槛红包。"
         model.preferentialArray = [pModel0,pModel1,pModel2]
         self.backView.model = model
     }
@@ -144,6 +149,11 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
                 }
                 self.backTopHeight?.deactivate()
                 self.tableViewTopDistance?.activate()
+//                print(backTopHeight?.isActive)
+//                print(tableViewTopDistance?.isActive)
+                print(backView.titleLabel.frame)
+                print(backView.frame)
+                print(tableview.frame)
             }
             //如果table的上距离小于最小值 赋值最小值
             if tableTopHeight.constant <= topViewUpHeight{
@@ -197,7 +207,7 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
             headWidth.constant = headIconMaxWidth
             headIconImageView.alpha = 1
         }
-        //标题变化范围
+        //标题搜索栏变化范围
         if topHeight.constant < searchButtonStartShowHeight && topHeight.constant > searchButtonOverShowHeight {
             self.pinButton.alpha = (topHeight.constant - searchButtonOverShowHeight)/(searchButtonStartShowHeight-searchButtonOverShowHeight)
             self.miniSearchButton.alpha = (topHeight.constant - searchButtonOverShowHeight)/(searchButtonStartShowHeight-searchButtonOverShowHeight)
@@ -212,6 +222,46 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
             self.pinButton.alpha = 1
             self.miniSearchButton.alpha = 1
             self.searchButton.alpha = 0
+        }
+        //backView动效
+        if tableTopHeight.constant > tableViewUpTop {
+            //按优先级来
+            if model.preferentialArray.count != 0{
+                for view in backView.preferentialsView.arrangedSubviews{
+                    let pView = view as! ELMPreferentialView
+                    pView.contentLabel.numberOfLines = 0
+                }
+                //获取高度
+                if preferentialDownHeight == 0{
+                    for view in backView.preferentialsView.arrangedSubviews{
+                        let pView = view as! ELMPreferentialView
+                        preferentialDownHeight += pView.frame.size.height+5
+                    }
+                    preferentialDownHeight -= 5
+                }
+                let p = (tableTopHeight.constant - tableViewUpTop)/preferentialDownHeight
+                if p <= 1{
+                    backView.preferentialsView.snp.updateConstraints({ (make) in
+                        make.left.equalTo(15+(backView.preferentialsViewOriginLeft-15) * (1-p))
+                    })
+                    backView.preferentialNumLabel.snp.updateConstraints({ (make) in
+                        make.right.equalTo(-15+(backView.preferentialNumlabelOriginRight+15) * (1-p))
+                    })
+                    backView.downImageView.alpha = 1-p
+                }
+                if p > 1{
+                    backView.preferentialsView.snp.updateConstraints({ (make) in
+                        make.left.equalTo(15)
+                    })
+                    backView.preferentialNumLabel.snp.updateConstraints({ (make) in
+                        make.right.equalTo(-15)
+                    })
+                    backView.downImageView.alpha = 0
+                }
+            }
+            if tableTopHeight.constant - tableViewUpTop > preferentialDownHeight{
+                
+            }
         }
     }
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -254,25 +304,26 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
                 if self.backView.preferentialsView.frame.origin.y != 0{
                     self.isLayout = true
                     normalHeight = self.backView.preferentialsView.frame.origin.y + self.backView.preferentialsView.arrangedSubviews[0].frame.size.height + 2
-                    tableViewUpTop = topViewDownHeight + normalHeight
-                    tableTopHeight.constant = tableViewUpTop
                 }
             }else if self.model.couponArray.count > 0 {
                 if self.backView.couponView.frame.origin.y != 0{
                     self.isLayout = true
                     normalHeight = self.backView.couponView.frame.origin.y + self.backView.couponView.frame.size.height + 2
-                    tableViewUpTop = topViewDownHeight + normalHeight
-                    tableTopHeight.constant = tableViewUpTop
                 }
             }else{
                 if self.backView.announcementView.frame.origin.y != 0{
                     self.isLayout = true
                     normalHeight = self.backView.announcementView.frame.origin.y + self.backView.announcementView.frame.size.height + 20
-                    tableViewUpTop = topViewDownHeight + normalHeight
-                    tableTopHeight.constant = tableViewUpTop
                 }
             }
+            tableViewUpTop = topViewDownHeight + normalHeight
+            tableTopHeight.constant = tableViewUpTop
+            goBackButtonStartShowHeight = tableViewUpTop + (tableviewDownTop - tableViewUpTop)/2.0
             
+            self.tableview.snp.makeConstraints({ (make) in
+                tableViewTopDistance = make.top.equalTo(self.backView).offset(tableViewUpTop-topViewDownHeight).constraint
+            })
+            self.tableViewTopDistance?.deactivate()
         }
         
     }
