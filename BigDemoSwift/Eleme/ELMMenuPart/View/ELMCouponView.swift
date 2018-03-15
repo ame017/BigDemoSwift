@@ -22,8 +22,8 @@ class ELMCouponView: UIView {
     var model:ELMMenuCouponModel?{
         didSet{
             //type将来再弄
-            smallNumber.text = String(describing: model?.money)
-            bigNumber.text = String(describing: model?.money)
+            smallNumber.text = String(describing: (model?.money)!)
+            bigNumber.text = String(describing: (model?.money)!)
             smallDesc.text = model?.desc
             bigDesc.text = model?.desc
             bigSubContent.text = model?.subContent

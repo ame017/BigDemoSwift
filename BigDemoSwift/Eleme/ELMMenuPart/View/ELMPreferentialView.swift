@@ -15,7 +15,26 @@ class ELMPreferentialView: UIView {
     
     var model:ELMMenuPreferentialModel?{
         didSet{
-            
+            self.contentLabel.text = model?.content
+            let type = model?.type ?? ELMMenuPreferentialModelType.full
+            var color = UIColor.init()
+            switch type {
+            case .full:
+                self.titleLabel.text = "满减"
+                color = AMEColor(r: 210, g: 86, b: 77)
+            case .mumbership:
+                self.titleLabel.text = "会员"
+                color = AMEColor(r: 210, g: 86, b: 77)
+            case.firstOrder:
+                self.titleLabel.text = "首单"
+                color = AMEColor(r: 210, g: 86, b: 77)
+            case .invoice:
+                self.titleLabel.text = "发票"
+                color = AMEColor(r: 210, g: 86, b: 77)
+            }
+            self.titleLabel.textColor = color
+            self.titleLabel.backgroundColor = color.withAlphaComponent(0.1)
+            self.titleLabel.layer.borderColor = color.cgColor
         }
     }
     
@@ -34,7 +53,7 @@ class ELMPreferentialView: UIView {
         let bundle = Bundle(for: type(of: self))
         //nibName是你定义的xib文件名
         let nib = UINib(nibName: "ELMPreferentialView", bundle: bundle)
-        content = nib.instantiate(withOwner: self, options: nil)[0] as! UIControl
+        content = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         content.frame = bounds
         self.addSubview(content)
     }

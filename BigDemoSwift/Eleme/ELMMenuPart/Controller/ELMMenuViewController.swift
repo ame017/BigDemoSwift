@@ -26,6 +26,8 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
     let searchButtonStartShowHeight:CGFloat = CGFloat(kStatusBarAndNavigationBarHeight+50)
     let searchButtonOverShowHeight:CGFloat = CGFloat(kStatusBarAndNavigationBarHeight)
     
+    var isLayout = false
+    
     @IBOutlet weak var goBackButtonView: UIView!
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var topBackImageView: UIImageView!
@@ -142,11 +144,6 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
                 }
                 self.backTopHeight?.deactivate()
                 self.tableViewTopDistance?.activate()
-//                if tableViewTopDistance == nil{
-//                    self.tableview.snp.makeConstraints({ (make) in
-//                        tableViewTopDistance = make.top.equalTo(self.backView).offset(tableViewUpTop-topViewDownHeight).constraint
-//                    })
-//                }
             }
             //如果table的上距离小于最小值 赋值最小值
             if tableTopHeight.constant <= topViewUpHeight{
@@ -155,10 +152,6 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
                 //否则上推table
                 scrollView.contentOffset = CGPoint.init(x: 0, y: 0)
                 tableTopHeight.constant -= contentOffset
-//                //如果top到顶
-//                if topHeight.constant <= topViewUpHeight{
-//                    backTopHeight.constant -= contentOffset
-//                }
             }
         }else if contentOffset < 0{
             //下拉
@@ -182,12 +175,6 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
                 if tableTopHeight.constant > tableViewUpTop {
                     self.tableViewTopDistance?.deactivate()
                     self.backTopHeight?.activate()
-                    
-//                    if backTopHeight == nil{
-//                        self.backView.snp.makeConstraints { (make) in
-//                            backTopHeight = make.top.equalTo(topContentView.snp.bottom).constraint
-//                        }
-//                    }
                 }
             }
         }
@@ -257,6 +244,37 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
         }) { (completion) in
             
         }
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        //修正初始布局
+        if self.isLayout == false{
+            var normalHeight:CGFloat = 0
+            if self.model.preferentialArray.count > 0 {
+                if self.backView.preferentialsView.frame.origin.y != 0{
+                    self.isLayout = true
+                    normalHeight = self.backView.preferentialsView.frame.origin.y + self.backView.preferentialsView.arrangedSubviews[0].frame.size.height + 2
+                    tableViewUpTop = topViewDownHeight + normalHeight
+                    tableTopHeight.constant = tableViewUpTop
+                }
+            }else if self.model.couponArray.count > 0 {
+                if self.backView.couponView.frame.origin.y != 0{
+                    self.isLayout = true
+                    normalHeight = self.backView.couponView.frame.origin.y + self.backView.couponView.frame.size.height + 2
+                    tableViewUpTop = topViewDownHeight + normalHeight
+                    tableTopHeight.constant = tableViewUpTop
+                }
+            }else{
+                if self.backView.announcementView.frame.origin.y != 0{
+                    self.isLayout = true
+                    normalHeight = self.backView.announcementView.frame.origin.y + self.backView.announcementView.frame.size.height + 20
+                    tableViewUpTop = topViewDownHeight + normalHeight
+                    tableTopHeight.constant = tableViewUpTop
+                }
+            }
+            
+        }
+        
     }
     /*
     // MARK: - Navigation

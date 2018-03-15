@@ -70,8 +70,12 @@ class ELMMenuBackView: UIControl {
             distanceLabelBig.attributedText = attrDistance
             
             
+            
             let attrAnnouncement = NSMutableAttributedString.init(string: (model?.announcement)!)
-            attrAnnouncement.addAttribute(NSAttributedStringKey.paragraphStyle, value: 5, range: NSRange.init(location: 0, length: (model?.announcement.count)!))
+            
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = 5
+            attrAnnouncement.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSRange.init(location: 0, length: (model?.announcement.count)!))
             attrAnnouncement.addAttribute(NSAttributedStringKey.foregroundColor, value:UIColor.darkGray , range: NSRange.init(location: 0, length: (model?.announcement.count)!))
             announcementLabel.attributedText = attrAnnouncement
             
@@ -82,7 +86,7 @@ class ELMMenuBackView: UIControl {
                 self.content.addSubview(characteristicsView)
                 characteristicsView.snp.makeConstraints({ (make) in
                     make.top.equalTo(bigContent.snp.bottom).offset(12)
-                    make.centerX.equalTo(0)
+                    make.centerX.equalToSuperview()
                 })
                 for i in 0 ..< (model?.characteristicsArray.count)! {
                     let label = UILabel.init()
@@ -118,14 +122,14 @@ class ELMMenuBackView: UIControl {
                 self.content.addSubview(couponView)
                 couponView.snp.makeConstraints({ (make) in
                     make.top.equalTo(announcementLabel.snp.bottom).offset(12)
-                    make.centerX.equalTo(0)
+                    make.centerX.equalToSuperview()
                 })
                 for i in 0 ..< (model?.couponArray.count)! {
                     let coupon = ELMCouponView.init(frame: CGRect.init())
                     coupon.model = model?.couponArray[i]
                     couponView.addArrangedSubview(coupon)
                     coupon.snp.makeConstraints({ (make) in
-                        make.width.equalTo(90)
+                        make.width.equalTo(110)
                         make.height.equalTo(30)
                     })
                 }
