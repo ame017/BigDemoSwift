@@ -32,9 +32,20 @@ class ELMMenuBackView: UIControl {
     @IBOutlet weak var announcementView: UIView!
     @IBOutlet weak var announcementLabel: UILabel!
     
+    @IBOutlet weak var announcementLabelMaskView: UIView!
     
-    let preferentialsViewOriginLeft:CGFloat = 30
-    let preferentialNumlabelOriginRight:CGFloat = -41
+    
+    let preferentialsViewOriginLeft:CGFloat = 25
+    let preferentialNumlabelOriginRight:CGFloat = -36
+    let announcementLabelOriginTop:CGFloat = 5
+    let announcementLabelOriginleftRight:CGFloat = 25
+    let announcementLabelMaskOriginTop:CGFloat = 11
+    
+    @IBOutlet weak var announcementLabelTop: NSLayoutConstraint!
+    @IBOutlet weak var announcementLabelLeft: NSLayoutConstraint!
+    @IBOutlet weak var announcementLabelRight: NSLayoutConstraint!
+    @IBOutlet weak var announcementLabelMaskHeight: NSLayoutConstraint!
+    @IBOutlet weak var announcementLabelMaskTop: NSLayoutConstraint!
     
     
     var downImageView = UIImageView.init()
@@ -92,7 +103,7 @@ class ELMMenuBackView: UIControl {
                 characteristicsView.axis = .horizontal
                 self.content.addSubview(characteristicsView)
                 characteristicsView.snp.makeConstraints({ (make) in
-                    make.top.equalTo(bigContent.snp.bottom).offset(12)
+                    make.top.equalTo(bigContent.snp.bottom).offset(8)
                     make.centerX.equalToSuperview()
                 })
                 for i in 0 ..< (model?.characteristicsArray.count)! {
@@ -100,27 +111,27 @@ class ELMMenuBackView: UIControl {
                     switch (model?.characteristicsArray[i].type)!{
                         case .onTime:
                             label.text = "准时达"
-                            label.font = UIFont.systemFont(ofSize: 10)
+                            label.font = UIFont.systemFont(ofSize: 11)
                             label.textColor = AMEColor(r: 68, g: 155, b: 235)
                             label.textAlignment = .center
                             label.clipsToBounds = true
                             label.layer.cornerRadius = 3.0
                             label.layer.borderWidth = 1.0
-                            label.layer.borderColor = UIColor.gray.cgColor
+                            label.layer.borderColor = UIColor.init(white: 0.9, alpha: 1.0).cgColor
                         case .refused:
                             label.text = "拒单赔"
-                            label.font = UIFont.systemFont(ofSize: 10)
+                            label.font = UIFont.systemFont(ofSize: 11)
                             label.textColor = UIColor.darkGray
                             label.textAlignment = .center
                             label.clipsToBounds = true
                             label.layer.cornerRadius = 3.0
                             label.layer.borderWidth = 1.0
-                            label.layer.borderColor = UIColor.gray.cgColor
+                            label.layer.borderColor = UIColor.init(white: 0.9, alpha: 1.0).cgColor
                     }
                     characteristicsView.addArrangedSubview(label)
                     label.snp.makeConstraints({ (make) in
-                        make.width.equalTo(50)
-                        make.height.equalTo(20)
+                        make.width.equalTo(45)
+                        make.height.equalTo(16)
                     })
                 }
             }
@@ -130,7 +141,7 @@ class ELMMenuBackView: UIControl {
                 couponView.axis = .horizontal
                 self.content.addSubview(couponView)
                 couponView.snp.makeConstraints({ (make) in
-                    make.top.equalTo(announcementLabel.snp.bottom).offset(12)
+                    make.top.equalTo(announcementLabelMaskView.snp.bottom).offset(12)
                     make.centerX.equalToSuperview()
                 })
                 preferentialView.snp.makeConstraints({ (make) in
@@ -142,7 +153,7 @@ class ELMMenuBackView: UIControl {
                     couponView.addArrangedSubview(coupon)
                     coupon.snp.makeConstraints({ (make) in
                         make.width.equalTo(110)
-                        make.height.equalTo(30)
+                        make.height.equalTo(20)
                     })
                 }
             }
@@ -163,7 +174,7 @@ class ELMMenuBackView: UIControl {
                 
                 
                 downImageView.snp.makeConstraints({ (make) in
-                    make.right.equalTo(-30)
+                    make.right.equalTo(-25)
                     make.width.equalTo(6)
                     make.height.equalTo(3)
                     make.centerY.equalTo(preferentialNumLabel)

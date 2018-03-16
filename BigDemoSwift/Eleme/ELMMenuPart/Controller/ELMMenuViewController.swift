@@ -28,6 +28,8 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
     
     private var isLayout = false
     private var preferentialDownHeight:CGFloat = 0.0
+    private var secondDownHeight:CGFloat = 0.0
+    private var thirdDownHeight:CGFloat = 0.0
     
     @IBOutlet weak var goBackButtonView: UIView!
     @IBOutlet weak var tableview: UITableView!
@@ -75,7 +77,7 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
         model.distance = 3150
         model.time = "约25分钟"
         model.way = "蜂鸟专送"
-        model.announcement = "本店经营各种便当，好吃不贵，全是新鲜的小白兔，长颈鹿负责亲自烹调，高峰时期为了避免拥堵，请您提前订餐。"
+        model.announcement = "本店经营各种便当，好吃不贵，全是新鲜的小白兔，长颈鹿负责亲自烹调，高峰时期为了避免拥堵，请您提前订餐。本店经营各种便当，好吃不贵，全是新鲜的小白兔，长颈鹿负责亲自烹调，高峰时期为了避免拥堵，请您提前订餐。"
         let cModel0 = ELMMenuCharacteristicsModel.init()
         model.characteristicsArray.append(cModel0)
         let coupon0 = ELMMenuCouponModel.init()
@@ -131,9 +133,8 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
         self.goToBottom()
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset.y)
+        print("scrollView.contentOffset.y:"+String(describing: scrollView.contentOffset.y))
         let contentOffset = scrollView.contentOffset.y
-//        let del = contentOffset - lastOffset
         if contentOffset > 0 {
             //上推
             //如果top的高度小于最小值 赋值最小值
@@ -149,11 +150,6 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
                 }
                 self.backTopHeight?.deactivate()
                 self.tableViewTopDistance?.activate()
-//                print(backTopHeight?.isActive)
-//                print(tableViewTopDistance?.isActive)
-                print(backView.titleLabel.frame)
-                print(backView.frame)
-                print(tableview.frame)
             }
             //如果table的上距离小于最小值 赋值最小值
             if tableTopHeight.constant <= topViewUpHeight{
@@ -233,11 +229,14 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
                 }
                 //获取高度
                 if preferentialDownHeight == 0{
-                    for view in backView.preferentialsView.arrangedSubviews{
-                        let pView = view as! ELMPreferentialView
+                    for i in 0 ..< backView.preferentialsView.arrangedSubviews.count{
+                        if i >= 3 {
+                            break;
+                        }
+                        let pView = backView.preferentialsView.arrangedSubviews[i] as! ELMPreferentialView
                         preferentialDownHeight += pView.frame.size.height+5
                     }
-                    preferentialDownHeight -= 5
+                    preferentialDownHeight -= 7
                 }
                 let p = (tableTopHeight.constant - tableViewUpTop)/preferentialDownHeight
                 if p <= 1{
@@ -258,9 +257,75 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
                     })
                     backView.downImageView.alpha = 0
                 }
+                //一行的高度
+                let del = tableViewUpTop - topViewDownHeight - backView.preferentialsView.frame.origin.y
+                //渐变
+                if backView.preferentialsView.arrangedSubviews.count > 1{
+                    for i in 1 ..< backView.preferentialsView.arrangedSubviews.count{
+                        let beginTop = backView.preferentialsView.arrangedSubviews[i].frame.origin.y - del
+                        let height = backView.preferentialsView.arrangedSubviews[i].frame.size.height
+                        if tableTopHeight.constant - tableViewUpTop > beginTop{
+                            backView.preferentialsView.arrangedSubviews[i].alpha = ((tableTopHeight.constant - tableViewUpTop) - beginTop)/height
+                        }
+                        if tableTopHeight.constant - tableViewUpTop > beginTop + height{
+                            backView.preferentialsView.arrangedSubviews[i].alpha = 1
+                        }
+                    }
+                }
             }
-            if tableTopHeight.constant - tableViewUpTop > preferentialDownHeight{
-                
+            if secondDownHeight == 0{
+                if self.model.characteristicsArray.count > 0 {
+                    secondDownHeight = 11 + 8 + 16 + 10
+                }else{
+                    secondDownHeight = 11 + 10
+                }
+            }
+            //没有满减或者满减拉到了三个
+            if tableTopHeight.constant > preferentialDownHeight + tableViewUpTop{
+                //第二段
+                let beginHeightSecond = preferentialDownHeight + tableViewUpTop
+                if tableTopHeight.constant - beginHeightSecond <= secondDownHeight {
+                    backView.announcementLabelTop.constant -= contentOffset
+                    backView.announcementLabel.numberOfLines = 1
+                }
+                let alphaChangeHeight = secondDownHeight - 12
+                if tableTopHeight.constant - beginHeightSecond <= alphaChangeHeight {
+                    let p = (tableTopHeight.constant - beginHeightSecond)/alphaChangeHeight
+                    backView.smallContent.alpha = 1-p
+                    backView.bigContent.alpha = p
+                }else{
+                    backView.smallContent.alpha = 0
+                    backView.bigContent.alpha = 1
+                }
+                if self.model.characteristicsArray.count > 0{
+                    let characteristicsBeginHeight = beginHeightSecond + secondDownHeight - 15
+                    if tableTopHeight.constant - characteristicsBeginHeight <= 16{
+                        let p = (tableTopHeight.constant - characteristicsBeginHeight)/16
+                        backView.characteristicsView.alpha = p
+                    }else{
+                        backView.characteristicsView.alpha = 1
+                    }
+                }
+                //第三段
+                let beginHeightThird = beginHeightSecond + secondDownHeight
+                if tableTopHeight.constant - beginHeightSecond > secondDownHeight{
+                    backView.announcementLabel.numberOfLines = 0
+                    backView.announcementLabel.textAlignment = .justified
+                    if thirdDownHeight == 0{
+                        let height = backView.announcementLabel.sizeThatFits(CGSize.init(width: SCREEN_WIDTH - 15*2, height: CGFloat(MAXFLOAT))).height
+                        print("height:",height)
+                        thirdDownHeight = 16+10+height
+                    }
+                }
+                if thirdDownHeight != 0 && tableTopHeight.constant - beginHeightThird <= thirdDownHeight {
+                    backView.announcementLabelTop.constant -= contentOffset*((16+10)/thirdDownHeight)
+                    backView.announcementLabelMaskTop.constant -= contentOffset
+                    backView.announcementLabelMaskHeight.constant += contentOffset
+                    if tableTopHeight.constant - beginHeightThird <= 16{
+                        backView.announcementLabelLeft.constant = 15 + (backView.announcementLabelOriginleftRight-15)*(1-(tableTopHeight.constant - beginHeightThird)/16.0)
+                        backView.announcementLabelRight.constant = 15 + (backView.announcementLabelOriginleftRight-15)*(1-(tableTopHeight.constant - beginHeightThird)/16.0)
+                    }
+                }
             }
         }
     }

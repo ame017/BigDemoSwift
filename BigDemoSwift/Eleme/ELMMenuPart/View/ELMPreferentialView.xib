@@ -23,13 +23,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="满减" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbT-Rt-n7p">
-                    <rect key="frame" x="2" y="0.0" width="30" height="14"/>
+                    <rect key="frame" x="2" y="0.0" width="30" height="15"/>
                     <color key="backgroundColor" red="0.82245399750000003" green="0.33792912110000001" blue="0.30195501600000002" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="14" id="QAU-4e-2dL"/>
+                        <constraint firstAttribute="height" constant="15" id="QAU-4e-2dL"/>
                         <constraint firstAttribute="width" constant="30" id="Wzy-Nm-f9x"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <color key="textColor" red="0.82245399746192893" green="0.33792912109513112" blue="0.3019550159853035" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
@@ -42,8 +42,8 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="满5减6，满100减20。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1M1-9V-IgZ">
-                    <rect key="frame" x="40" y="0.0" width="114.5" height="20"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <rect key="frame" x="40" y="0.0" width="124.5" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
