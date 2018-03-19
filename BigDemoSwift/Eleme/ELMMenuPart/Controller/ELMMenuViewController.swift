@@ -30,6 +30,7 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
     private var preferentialDownHeight:CGFloat = 0.0
     private var secondDownHeight:CGFloat = 0.0
     private var thirdDownHeight:CGFloat = 0.0
+    private var fourthDownHeight:CGFloat = 0.0
     
     @IBOutlet weak var goBackButtonView: UIView!
     @IBOutlet weak var tableview: UITableView!
@@ -285,8 +286,7 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
                 //第二段
                 let beginHeightSecond = preferentialDownHeight + tableViewUpTop
                 if tableTopHeight.constant - beginHeightSecond <= secondDownHeight {
-                    backView.announcementLabelTop.constant -= contentOffset
-                    backView.announcementLabel.numberOfLines = 1
+                    backView.announcementTextViewTop.constant -= contentOffset
                 }
                 let alphaChangeHeight = secondDownHeight - 12
                 if tableTopHeight.constant - beginHeightSecond <= alphaChangeHeight {
@@ -309,24 +309,66 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
                 //第三段
                 let beginHeightThird = beginHeightSecond + secondDownHeight
                 if tableTopHeight.constant - beginHeightSecond > secondDownHeight{
-                    backView.announcementLabel.numberOfLines = 0
-                    backView.announcementLabel.textAlignment = .justified
                     if thirdDownHeight == 0{
-                        let height = backView.announcementLabel.sizeThatFits(CGSize.init(width: SCREEN_WIDTH - 15*2, height: CGFloat(MAXFLOAT))).height
+                        let height = backView.announcementTextView.sizeThatFits(CGSize.init(width: SCREEN_WIDTH - 15*2, height: CGFloat(MAXFLOAT))).height
                         print("height:",height)
-                        thirdDownHeight = 16+10+height
+                        thirdDownHeight = height
                     }
                 }
                 if thirdDownHeight != 0 && tableTopHeight.constant - beginHeightThird <= thirdDownHeight {
-                    backView.announcementLabelTop.constant -= contentOffset*((16+10)/thirdDownHeight)
-                    backView.announcementLabelMaskTop.constant -= contentOffset
-                    backView.announcementLabelMaskHeight.constant += contentOffset
-                    if tableTopHeight.constant - beginHeightThird <= 16{
-                        backView.announcementLabelLeft.constant = 15 + (backView.announcementLabelOriginleftRight-15)*(1-(tableTopHeight.constant - beginHeightThird)/16.0)
-                        backView.announcementLabelRight.constant = 15 + (backView.announcementLabelOriginleftRight-15)*(1-(tableTopHeight.constant - beginHeightThird)/16.0)
+                    if tableTopHeight.constant < beginHeightThird{
+                        backView.announcementTextViewLeft.constant = backView.announcementTextViewOriginleftRight
+                        backView.announcementTextViewRight.constant = backView.announcementTextViewOriginleftRight
+                        backView.announcementTextViewHeight.constant = backView.announcementTextViewOriginHeight
+                        backView.announcementView.alpha = 0
+                    }else{
+                        backView.announcementTextViewTop.constant -= contentOffset*((16+10)/thirdDownHeight)
+                        backView.announcementTextViewHeight.constant -= contentOffset*(1-(16+10)/thirdDownHeight)
+                        if tableTopHeight.constant - beginHeightThird <= 16+10{
+                            backView.announcementTextViewLeft.constant = 15 + (backView.announcementTextViewOriginleftRight-15)*(1-(tableTopHeight.constant - beginHeightThird)/(16+10))
+                            backView.announcementTextViewRight.constant = 15 + (backView.announcementTextViewOriginleftRight-15)*(1-(tableTopHeight.constant - beginHeightThird)/(16+10))
+                        }else{
+                            backView.announcementView.alpha = (tableTopHeight.constant - (beginHeightThird+16+10)) /  (thirdDownHeight-16-10)
+                        }
+                    }
+                }
+                //第四段
+                let beginHeightFourth = beginHeightThird + thirdDownHeight
+                if fourthDownHeight == 0{
+                    if self.model.couponArray.count > 0 {
+                        fourthDownHeight = 16+8+backView.couponOverHeight
+                    }else{
+                        fourthDownHeight = 16+8
+                    }
+                }
+                if tableTopHeight.constant - beginHeightFourth <= fourthDownHeight{
+                    if tableTopHeight.constant < beginHeightFourth{
+                        if model.couponArray.count > 0{
+//                            for view in backView.couponView.arrangedSubviews{
+//                                view.snp.updateConstraints({ (make) in
+//                                    make.height.equalTo(backView.couponOverHeight)
+//                                    make.width.equalTo(backView.couponOverWidth)
+//                                })
+//                            }
+//                            backView.preferentialView.alpha = 0
+                        }
+                    }else{
+                        if tableTopHeight.constant - beginHeightFourth <= 16 + 8{
+                            backView.preferentialView.alpha = (tableTopHeight.constant - beginHeightFourth) / (16+8)
+                            if model.couponArray.count > 0{
+                                backView.couponView.snp.updateConstraints({ (make) in
+                                    make.top.equalTo(backView.couponViewOriginTop + (tableTopHeight.constant - beginHeightFourth))
+                                })
+                            }else{
+                                backView.preferentialsView.snp.updateConstraints({ (make) in
+                                    make.top.equalTo(backView.preferentialsViewOriginTop + (tableTopHeight.constant - beginHeightFourth))
+                                })
+                            }
+                        }
                     }
                 }
             }
+            
         }
     }
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -392,6 +434,10 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
         }
         
     }
+    @IBAction func backButtonClick(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -399,7 +445,10 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "back"{
+            self.navigationController?.popViewController(animated: true)
+        }
     }
-    */
+     */
 
 }

@@ -30,24 +30,34 @@ class ELMMenuBackView: UIControl {
     
     @IBOutlet weak var preferentialView: UIView!
     @IBOutlet weak var announcementView: UIView!
-    @IBOutlet weak var announcementLabel: UILabel!
-    
-    @IBOutlet weak var announcementLabelMaskView: UIView!
+    @IBOutlet weak var announcementTextView:UITextView!
     
     
     let preferentialsViewOriginLeft:CGFloat = 25
     let preferentialNumlabelOriginRight:CGFloat = -36
-    let announcementLabelOriginTop:CGFloat = 5
-    let announcementLabelOriginleftRight:CGFloat = 25
-    let announcementLabelMaskOriginTop:CGFloat = 11
-    
-    @IBOutlet weak var announcementLabelTop: NSLayoutConstraint!
-    @IBOutlet weak var announcementLabelLeft: NSLayoutConstraint!
-    @IBOutlet weak var announcementLabelRight: NSLayoutConstraint!
-    @IBOutlet weak var announcementLabelMaskHeight: NSLayoutConstraint!
-    @IBOutlet weak var announcementLabelMaskTop: NSLayoutConstraint!
+    let announcementTextViewOriginTop:CGFloat = -3
+    let announcementTextViewOriginleftRight:CGFloat = 25
+    let announcementTextViewOriginHeight:CGFloat = 27
     
     
+    let couponOriginHeight:CGFloat = 25
+    let couponOriginWidth:CGFloat = 110
+    
+    let couponOverWidth:CGFloat = (SCREEN_WIDTH-10)/2.0
+    let couponOverHeight:CGFloat = ((SCREEN_WIDTH-10)/2.0)/157.0*51
+    
+    let couponViewOriginTop:CGFloat = 0
+    let preferentialsViewOriginTop:CGFloat = 0
+    
+    let preferentialViewOriginBottom:CGFloat = -12
+    
+    
+    @IBOutlet weak var announcementTextViewTop: NSLayoutConstraint!
+    @IBOutlet weak var announcementTextViewLeft: NSLayoutConstraint!
+    @IBOutlet weak var announcementTextViewRight: NSLayoutConstraint!
+    @IBOutlet weak var announcementTextViewHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var preferentialViewTop: NSLayoutConstraint!
     var downImageView = UIImageView.init()
     
     var characteristicsView = UIStackView.init()
@@ -88,14 +98,15 @@ class ELMMenuBackView: UIControl {
             
             
             
-            let attrAnnouncement = NSMutableAttributedString.init(string: (model?.announcement)!)
-            
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.lineSpacing = 5
-            attrAnnouncement.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSRange.init(location: 0, length: (model?.announcement.count)!))
-            attrAnnouncement.addAttribute(NSAttributedStringKey.foregroundColor, value:UIColor.darkGray , range: NSRange.init(location: 0, length: (model?.announcement.count)!))
-            announcementLabel.attributedText = attrAnnouncement
-            announcementLabel.lineBreakMode = .byTruncatingTail
+//            let attrAnnouncement = NSMutableAttributedString.init(string: (model?.announcement)!)
+//
+//            let paragraphStyle = NSMutableParagraphStyle()
+//            paragraphStyle.lineSpacing = 5
+//            attrAnnouncement.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSRange.init(location: 0, length: (model?.announcement.count)!))
+//            attrAnnouncement.addAttribute(NSAttributedStringKey.foregroundColor, value:UIColor.darkGray , range: NSRange.init(location: 0, length: (model?.announcement.count)!))
+//            announcementLabel.attributedText = attrAnnouncement
+//            announcementLabel.lineBreakMode = .byTruncatingTail
+            announcementTextView.text = model?.announcement
             
             if (model?.characteristicsArray.count)! > 0{
                 characteristicsView.spacing = 5
@@ -141,11 +152,12 @@ class ELMMenuBackView: UIControl {
                 couponView.axis = .horizontal
                 self.content.addSubview(couponView)
                 couponView.snp.makeConstraints({ (make) in
-                    make.top.equalTo(announcementLabelMaskView.snp.bottom).offset(12)
+                    make.top.equalTo(announcementTextView.snp.bottom).offset(couponViewOriginTop)
                     make.centerX.equalToSuperview()
                 })
+                preferentialViewTop.isActive = false
                 preferentialView.snp.makeConstraints({ (make) in
-                    make.bottom.equalTo(couponView.snp.top).offset(-15)
+                    make.bottom.equalTo(couponView.snp.top).offset(preferentialViewOriginBottom)
                 })
                 for i in 0 ..< (model?.couponArray.count)! {
                     let coupon = ELMCouponView.init(frame: CGRect.init())
@@ -153,7 +165,7 @@ class ELMMenuBackView: UIControl {
                     couponView.addArrangedSubview(coupon)
                     coupon.snp.makeConstraints({ (make) in
                         make.width.equalTo(110)
-                        make.height.equalTo(20)
+                        make.height.equalTo(25)
                     })
                 }
             }
@@ -189,14 +201,15 @@ class ELMMenuBackView: UIControl {
                     if (self.model?.couponArray.count)! > 0{
                         make.top.equalTo(couponView.snp.bottom).offset(10)
                     }else{
-                        make.top.equalTo(announcementLabel.snp.bottom).offset(10)
+                        make.top.equalTo(announcementTextView.snp.bottom).offset(preferentialsViewOriginTop)
                     }
                     make.left.equalTo(preferentialsViewOriginLeft)
                     make.width.equalTo(SCREEN_WIDTH-30-30-41-40)
                 })
                 if model?.couponArray.count == 0{
+                    preferentialViewTop.isActive = false
                     preferentialView.snp.makeConstraints({ (make) in
-                        make.bottom.equalTo(preferentialsView.snp.top).offset(-15)
+                        make.bottom.equalTo(preferentialsView.snp.top).offset(preferentialViewOriginBottom)
                     })
                 }
                 
@@ -213,10 +226,16 @@ class ELMMenuBackView: UIControl {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initFromXIB()
+//        announcementTextView.contentInset = UIEdgeInsets.init(top: -8, left: 0, bottom: 0, right: 0)
+//        announcementTextView.scrollRangeToVisible(NSRange.init(location: 0, length: 1))
+        announcementTextView.textContainer.lineBreakMode = .byTruncatingTail
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
         initFromXIB()
+//        announcementTextView.contentInset = UIEdgeInsets.init(top: -8, left: 0, bottom: 0, right: 0)
+//        announcementTextView.scrollRangeToVisible(NSRange.init(location: 0, length: 1))
+        announcementTextView.textContainer.lineBreakMode = .byTruncatingTail
     }
     
     func initFromXIB() {
