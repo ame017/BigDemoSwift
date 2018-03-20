@@ -73,18 +73,18 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
         self.backTopHeight?.activate()
         
         model.name = "小白兔便当"
-        model.score = 5.0
+        model.score = 4.7
         model.seal = 315
         model.distance = 3150
         model.time = "约25分钟"
         model.way = "蜂鸟专送"
-        model.announcement = "本店经营各种便当，好吃不贵，全是新鲜的小白兔，长颈鹿负责亲自烹调，高峰时期为了避免拥堵，请您提前订餐。本店经营各种便当，好吃不贵，全是新鲜的小白兔，长颈鹿负责亲自烹调，高峰时期为了避免拥堵，请您提前订餐。"
+        model.announcement = "本店经营各种便当，好吃不贵，全是新鲜的食材，用料精良，欢迎各位新老顾客前来订餐。算上满减大概十多元一份，经济实惠，是您午餐与晚餐的不二之选。最近雨雪天气路滑，如有送餐迟到的情况请多多包涵。为了保证您能及时就餐，高峰时期请提前订餐。"
         let cModel0 = ELMMenuCharacteristicsModel.init()
         model.characteristicsArray.append(cModel0)
         let coupon0 = ELMMenuCouponModel.init()
         model.couponArray.append(coupon0)
         let pModel0 = ELMMenuPreferentialModel.init()
-        pModel0.content = "满6减5，满30减22，满50减35，满100减70."
+        pModel0.content = "满6减5，满30减22，满50减35，满100减70。"
         let pModel1 = ELMMenuPreferentialModel.init()
         pModel1.type = .firstOrder
         pModel1.content = "新人首单减16元。"
@@ -134,7 +134,7 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
         self.goToBottom()
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print("scrollView.contentOffset.y:"+String(describing: scrollView.contentOffset.y))
+ //       print("scrollView.contentOffset.y:"+String(describing: scrollView.contentOffset.y))
         let contentOffset = scrollView.contentOffset.y
         if contentOffset > 0 {
             //上推
@@ -344,31 +344,61 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
                 if tableTopHeight.constant - beginHeightFourth <= fourthDownHeight{
                     if tableTopHeight.constant < beginHeightFourth{
                         if model.couponArray.count > 0{
-//                            for view in backView.couponView.arrangedSubviews{
-//                                view.snp.updateConstraints({ (make) in
-//                                    make.height.equalTo(backView.couponOverHeight)
-//                                    make.width.equalTo(backView.couponOverWidth)
-//                                })
-//                            }
-//                            backView.preferentialView.alpha = 0
+                            for view in backView.couponView.arrangedSubviews{
+                                view.snp.updateConstraints({ (make) in
+                                    make.height.equalTo(backView.couponOriginHeight)
+                                    make.width.equalTo(backView.couponOriginWidth)
+                                })
+                            }
                         }
+                        backView.preferentialView.alpha = 0
                     }else{
                         if tableTopHeight.constant - beginHeightFourth <= 16 + 8{
                             backView.preferentialView.alpha = (tableTopHeight.constant - beginHeightFourth) / (16+8)
                             if model.couponArray.count > 0{
                                 backView.couponView.snp.updateConstraints({ (make) in
-                                    make.top.equalTo(backView.couponViewOriginTop + (tableTopHeight.constant - beginHeightFourth))
+                                    make.top.equalTo(backView.announcementTextView.snp.bottom).offset(backView.couponViewOriginTop + (tableTopHeight.constant - beginHeightFourth))
                                 })
                             }else{
                                 backView.preferentialsView.snp.updateConstraints({ (make) in
-                                    make.top.equalTo(backView.preferentialsViewOriginTop + (tableTopHeight.constant - beginHeightFourth))
+                                    make.top.equalTo(backView.announcementTextView.snp.bottom).offset(backView.preferentialsViewOriginTop + (tableTopHeight.constant - beginHeightFourth))
                                 })
+                            }
+                        }else if tableTopHeight.constant <= beginHeightFourth + fourthDownHeight{
+                            if model.couponArray.count > 0{
+                                let p = (tableTopHeight.constant - beginHeightFourth - 16 - 8) / (fourthDownHeight - 16 - 8)
+
+                                let width = backView.couponOriginWidth + (backView.couponOverWidth - backView.couponOriginWidth) * p
+                                let height = backView.couponOriginHeight + (backView.couponOverHeight - backView.couponOriginHeight) * p
+                                for view in backView.couponView.arrangedSubviews{
+                                    view.snp.updateConstraints({ (make) in
+                                        make.width.equalTo(width)
+                                        make.height.equalTo(height)
+                                    })
+                                    let conponView = view as! ELMCouponView
+                                    if height < 30{
+                                        conponView.smallContent.alpha = 1
+                                        conponView.bigContent.alpha = 0
+                                    }
+                                    if height >= 30 && height <= 45{
+                                        let alphaP = (height - 30) / (45-30)
+                                        conponView.smallContent.alpha = 1 - alphaP
+                                        conponView.bigContent.alpha = alphaP
+                                    }
+                                    if height > 45{
+                                        conponView.smallContent.alpha = 0
+                                        conponView.bigContent.alpha = 1
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }
-            
+        }else if tableTopHeight.constant > tableViewUpTop-30{
+            //缓冲一下
+            backView.returnToInitAlpha()
+            backView.returnToInitConstant()
         }
     }
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -384,20 +414,24 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
     }
     func returnToNormal() -> Void {
         tableTopHeight.constant = tableViewUpTop
+        backView.returnToInitConstant()
         UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
             self.tableview.alpha = 1
             self.goBackButtonView.alpha = 0
+            self.backView.returnToInitAlpha()
         }) { (completion) in
             
         }
     }
     func goToBottom() -> Void {
         tableTopHeight.constant = tableviewDownTop
+        backView.goToOverConstant()
         UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
             self.tableview.alpha = 0
             self.goBackButtonView.alpha = 1
+            self.backView.goToOverAlpha()
         }) { (completion) in
             
         }

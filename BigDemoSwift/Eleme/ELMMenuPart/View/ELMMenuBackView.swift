@@ -88,24 +88,14 @@ class ELMMenuBackView: UIControl {
             }
             let attrDistance = NSMutableAttributedString.init(string: distance)
             if (model?.distance)! >= 1000{
-                attrDistance.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 12), range: NSRange.init(location: distance.count-1-2, length: 2))
+                attrDistance.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 12), range: NSRange.init(location: distance.count-2, length: 2))
                 attrDistance.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 16), range: NSRange.init(location: 0, length: distance.count-2))
             }else{
-                attrDistance.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 12), range: NSRange.init(location: distance.count-1-1, length: 1))
+                attrDistance.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 12), range: NSRange.init(location: distance.count-1, length: 1))
                 attrDistance.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: 16), range: NSRange.init(location: 0, length: distance.count - 1))
             }
             distanceLabelBig.attributedText = attrDistance
             
-            
-            
-//            let attrAnnouncement = NSMutableAttributedString.init(string: (model?.announcement)!)
-//
-//            let paragraphStyle = NSMutableParagraphStyle()
-//            paragraphStyle.lineSpacing = 5
-//            attrAnnouncement.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSRange.init(location: 0, length: (model?.announcement.count)!))
-//            attrAnnouncement.addAttribute(NSAttributedStringKey.foregroundColor, value:UIColor.darkGray , range: NSRange.init(location: 0, length: (model?.announcement.count)!))
-//            announcementLabel.attributedText = attrAnnouncement
-//            announcementLabel.lineBreakMode = .byTruncatingTail
             announcementTextView.text = model?.announcement
             
             if (model?.characteristicsArray.count)! > 0{
@@ -246,5 +236,132 @@ class ELMMenuBackView: UIControl {
         content.frame = bounds
         self.addSubview(content)
     }
-
+    
+    func returnToInitConstant() -> Void {
+        if (model?.preferentialArray.count)! > 0{
+            for view in preferentialsView.arrangedSubviews{
+                let pView = view as! ELMPreferentialView
+                pView.contentLabel.numberOfLines = 1
+            }
+            preferentialsView.snp.updateConstraints({ (make) in
+                make.left.equalTo(preferentialsViewOriginLeft)
+            })
+            preferentialNumLabel.snp.updateConstraints({ (make) in
+                make.right.equalTo(preferentialNumlabelOriginRight)
+            })
+        }
+        announcementTextViewTop.constant = announcementTextViewOriginTop
+        announcementTextViewLeft.constant = announcementTextViewOriginleftRight
+        announcementTextViewRight.constant = announcementTextViewOriginleftRight
+        announcementTextViewHeight.constant = announcementTextViewOriginHeight
+        if (model?.couponArray.count)! > 0{
+            for view in couponView.arrangedSubviews{
+                view.snp.updateConstraints({ (make) in
+                    make.height.equalTo(couponOriginHeight)
+                    make.width.equalTo(couponOriginWidth)
+                })
+            }
+            couponView.snp.updateConstraints({ (make) in
+                make.top.equalTo(announcementTextView.snp.bottom).offset(couponViewOriginTop)
+            })
+        }else{
+            preferentialsView.snp.updateConstraints { (make) in
+                make.top.equalTo(announcementTextView.snp.bottom).offset(preferentialsViewOriginTop)
+            }
+        }
+    }
+    
+    func goToOverConstant() -> Void {
+        if (model?.preferentialArray.count)! > 0{
+            for view in preferentialsView.arrangedSubviews{
+                let pView = view as! ELMPreferentialView
+                pView.contentLabel.numberOfLines = 0
+            }
+            preferentialsView.snp.updateConstraints({ (make) in
+                make.left.equalTo(15)
+            })
+            preferentialNumLabel.snp.updateConstraints({ (make) in
+                make.right.equalTo(-15)
+            })
+        }
+        var secondDownHeight:CGFloat = 0.0
+        if (self.model?.characteristicsArray.count)! > 0 {
+            secondDownHeight = 11 + 8 + 16 + 10
+        }else{
+            secondDownHeight = 11 + 10
+        }
+        let height = announcementTextView.sizeThatFits(CGSize.init(width: SCREEN_WIDTH - 15*2, height: CGFloat(MAXFLOAT))).height
+        announcementTextViewTop.constant = announcementTextViewOriginTop + secondDownHeight + height * ((16+10)/height)
+        announcementTextViewLeft.constant = 15
+        announcementTextViewRight.constant = 15
+        announcementTextViewHeight.constant = announcementTextViewOriginHeight + height * (1-(16+10)/height)
+        
+//        var fourthDownHeight:CGFloat = 0.0
+//        if (self.model?.couponArray.count)! > 0 {
+//            fourthDownHeight = 16+8+couponOverHeight
+//        }else{
+//            fourthDownHeight = 16+8
+//        }
+        
+        if (model?.couponArray.count)! > 0{
+            for view in couponView.arrangedSubviews{
+                view.snp.updateConstraints({ (make) in
+                    make.height.equalTo(couponOverHeight)
+                    make.width.equalTo(couponOverWidth)
+                })
+            }
+            couponView.snp.updateConstraints({ (make) in
+                make.top.equalTo(announcementTextView.snp.bottom).offset(couponViewOriginTop+16+8)
+            })
+        }else{
+            preferentialsView.snp.updateConstraints { (make) in
+                make.top.equalTo(announcementTextView.snp.bottom).offset(preferentialsViewOriginTop+16+8)
+            }
+        }
+    }
+    
+    func returnToInitAlpha() -> Void {
+        if (model?.preferentialArray.count)! > 0{
+            for view in preferentialsView.arrangedSubviews{
+                view.alpha = 1
+            }
+            downImageView.alpha = 1
+        }
+        smallContent.alpha = 1
+        bigContent.alpha = 0
+        characteristicsView.alpha = 0
+        announcementView.alpha = 0
+        if (model?.couponArray.count)! > 0{
+            for view in couponView.arrangedSubviews{
+                let conponView = view as! ELMCouponView
+                conponView.smallContent.alpha = 1
+                conponView.bigContent.alpha = 0
+            }
+        }else{
+            
+        }
+        preferentialView.alpha = 0
+    }
+    func goToOverAlpha() -> Void {
+        if (model?.preferentialArray.count)! > 0{
+            for view in preferentialsView.arrangedSubviews{
+                view.alpha = 1
+            }
+            downImageView.alpha = 0
+        }
+        smallContent.alpha = 0
+        bigContent.alpha = 1
+        characteristicsView.alpha = 1
+        announcementView.alpha = 1
+        if (model?.couponArray.count)! > 0{
+            for view in couponView.arrangedSubviews{
+                let conponView = view as! ELMCouponView
+                conponView.smallContent.alpha = 0
+                conponView.bigContent.alpha = 1
+            }
+        }else{
+            
+        }
+        preferentialView.alpha = 1
+    }
 }
