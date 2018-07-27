@@ -12,6 +12,8 @@ import SnapKit
 
 class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var backButtonTop: NSLayoutConstraint!
+    
     let topViewUpHeight:CGFloat = CGFloat(kStatusBarAndNavigationBarHeight)
     let topViewDownHeight:CGFloat = 100 + CGFloat(kStatusBarAndNavigationBarHeight)
     let headIconMaxWidth:CGFloat = 80
@@ -65,6 +67,9 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
         // Do any additional setup after loading the view.
         self.fd_prefersNavigationBarHidden = true
         self.goBackButtonView.alpha = 0
+        if IS_iPhoneX {
+            self.backButtonTop.constant = 52.0
+        }
         self.backView.content.addTarget(self, action: #selector(self.backViewClick(_:)), for: UIControlEvents.touchUpInside)
         //代码创建两个约束
         self.backView.snp.makeConstraints { (make) in
@@ -134,7 +139,6 @@ class ELMMenuViewController: ELMBaseViewController,UIScrollViewDelegate,UITableV
         self.goToBottom()
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
- //       print("scrollView.contentOffset.y:"+String(describing: scrollView.contentOffset.y))
         let contentOffset = scrollView.contentOffset.y
         if contentOffset > 0 {
             //上推

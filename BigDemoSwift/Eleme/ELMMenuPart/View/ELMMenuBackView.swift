@@ -216,15 +216,11 @@ class ELMMenuBackView: UIControl {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initFromXIB()
-//        announcementTextView.contentInset = UIEdgeInsets.init(top: -8, left: 0, bottom: 0, right: 0)
-//        announcementTextView.scrollRangeToVisible(NSRange.init(location: 0, length: 1))
         announcementTextView.textContainer.lineBreakMode = .byTruncatingTail
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
         initFromXIB()
-//        announcementTextView.contentInset = UIEdgeInsets.init(top: -8, left: 0, bottom: 0, right: 0)
-//        announcementTextView.scrollRangeToVisible(NSRange.init(location: 0, length: 1))
         announcementTextView.textContainer.lineBreakMode = .byTruncatingTail
     }
     
@@ -295,13 +291,6 @@ class ELMMenuBackView: UIControl {
         announcementTextViewLeft.constant = 15
         announcementTextViewRight.constant = 15
         announcementTextViewHeight.constant = announcementTextViewOriginHeight + height * (1-(16+10)/height)
-        
-//        var fourthDownHeight:CGFloat = 0.0
-//        if (self.model?.couponArray.count)! > 0 {
-//            fourthDownHeight = 16+8+couponOverHeight
-//        }else{
-//            fourthDownHeight = 16+8
-//        }
         
         if (model?.couponArray.count)! > 0{
             for view in couponView.arrangedSubviews{
